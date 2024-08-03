@@ -64,3 +64,56 @@ mdtraj/rmsd/_rmsd.cpp
 
 result/
 result
+
+# Ignore LaTeX specific intermediate files
+# Ignore auxiliary and intermediate files
+*.aux
+*.bbl
+*.blg
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.gz
+*.fls
+*.fdb_latexmk
+*.snm
+*.nav
+*.vrb
+*.synctex(busy)
+*.synctex.gz
+*.synctex(busy)
+*.dvi
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.xdv
+*.xdv
+*.thm
+*.alg
+*.acr
+*.glg
+*.glo
+*.gls
+*.ist
+*.acn
+*.out.ps
+*.lof
+*.lot
+*.maf
+*.idx
+*.ilg
+*.ind
+*.toc.bak
+*.blx.bib
+
+# Ignore folders often used for intermediate output
+/output
+/build
+/aux
+
+# Ignore any LaTeX editor specific settings or temporary files
+.vscode/
+.idea/
