@@ -1,0 +1,198 @@
+\documentclass[english,course]{lecture}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+%
+% Document metadata
+\ccode{WCGMS BCMB}
+\title{Knowledge base}
+\subtitle{Binding Models}
+\shorttitle{As inspired by Wyman and Gill}
+\subject{Biophysics}
+\author{Sukrit Singh}
+\email{sukrit.singh@choderalab.org}
+% \date{02}{08}{2024}
+% \dateend{09}{08}{2024}
+\attn{Introduction to Wyman and Gill's Binding Models}
+\morelink{http://choderalab.org}
+%
+% Begin document
+\begin{document}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COURSE MATERIALS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Recommended reading and supportive texts}
+
+\subsection*{Recommended reading}
+
+\noindent {\bf Molecular Driving Forces}, Dill and Bromberg\\
+Chapter 15 ("Binding Models and Binding Sites") \href{https://tinyurl.com/dill-bromberg-preview}{[PDF (click "Preview this Book")]}\\
+
+\noindent {\bf Binding and Linkage: Functional Chemistry of Biological Macromolecules}, Wyman and Gill \\
+A comprehensive guide to the principles of binding and linkage, essential for understanding the thermodynamics of molecular interactions.
+\href{https://books.google.com/books/about/Binding_and_Linkage.html?id=daxAKlHw7qQC}{[Google Books]}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Introduction to Binding Models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction to Binding Models}
+% \lecture[Read prior to lecture]{02}{08}{2024}
+
+Binding models are fundamental to understanding how molecules interact, particularly in biological systems where proteins, DNA, and other macromolecules exhibit complex binding behaviors. Wyman and Gill provide an excellent framework for examining these interactions through statistical mechanics and thermodynamics.
+
+\vskip2ex
+
+In this lecture, we'll focus on:
+
+\begin{itemize}
+    \item Understanding basic binding models, including the law of mass action.
+    \item Exploring the concepts of ligand binding, binding sites, and equilibrium constants.
+    \item Introducing Wyman and Gill's framework for cooperative binding and linkage.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Basic Binding Models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Basic Binding Models}
+
+The simplest binding model involves a ligand \(L\) binding to a receptor \(R\) to form a complex \(RL\). This interaction can be described by the following equilibrium:
+
+\[
+R + L \rightleftharpoons RL
+\]
+
+The equilibrium constant \(K_d\) is defined as:
+
+\[
+K_d = \frac{[R][L]}{[RL]}
+\]
+
+where \([R]\), \([L]\), and \([RL]\) represent the concentrations of the receptor, ligand, and complex, respectively.
+
+\subsection{The Law of Mass Action}
+
+The law of mass action states that the rate of a reaction is proportional to the product of the concentrations of the reactants. For the binding reaction:
+
+\[
+\text{Rate} = k_f[R][L] - k_r[RL]
+\]
+
+where \(k_f\) and \(k_r\) are the forward and reverse rate constants. At equilibrium, the rate of formation of \(RL\) equals the rate of its dissociation, leading to:
+
+\[
+K_d = \frac{k_r}{k_f}
+\]
+
+\subsection{Binding Free Energy}
+
+The free energy change associated with binding, \(\Delta G\), is given by:
+
+\[
+\Delta G = \Delta H - T \Delta S = -RT \ln K_d
+\]
+
+where \(\Delta H\) is the enthalpy change, \(\Delta S\) is the entropy change, \(T\) is the temperature, and \(R\) is the universal gas constant.
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cooperative Binding
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Cooperative Binding}
+
+Cooperative binding refers to scenarios where the binding of one ligand affects the binding of additional ligands. Hemoglobin, which binds oxygen molecules, is a classic example of cooperative binding.
+
+\subsection{Hill Equation}
+
+The Hill equation provides a way to describe cooperative binding:
+
+\[
+\theta = \frac{[L]^n}{K_d^n + [L]^n}
+\]
+
+where \(\theta\) is the fraction of binding sites occupied, and \(n\) is the Hill coefficient, indicating the degree of cooperativity.
+
+- \(n = 1\): No cooperativity (independent binding)
+- \(n > 1\): Positive cooperativity (binding of one ligand increases affinity for others)
+- \(n < 1\): Negative cooperativity (binding of one ligand decreases affinity for others)
+
+\subsection{Wyman and Gill's Model}
+
+Wyman and Gill introduced a more comprehensive approach to cooperative binding through the concept of \emph{linkage}. This model considers the energetics of multiple binding sites and the interaction between them.
+
+The linkage equation can be expressed as:
+
+\[
+\Delta G = \Delta G_0 + RT \ln \left(1 + \frac{L}{K_d}\right)^n
+\]
+
+where \(\Delta G_0\) is the standard free energy change for binding in the absence of cooperativity.
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Advanced Concepts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Advanced Concepts}
+
+\subsection{Allosteric Regulation}
+
+Allosteric regulation involves binding at one site affecting the activity at another. This is critical in enzyme regulation and signal transduction.
+
+\subsection{Linkage and Binding Polynomials}
+
+The concept of \emph{binding polynomials} is used to describe systems with multiple binding sites. The polynomial takes into account all possible binding states and their respective energies.
+
+For a system with two binding sites:
+
+\[
+P(L) = 1 + K_1[L] + K_2[L]^2
+\]
+
+where \(K_1\) and \(K_2\) are equilibrium constants for each binding step.
+
+\subsection{Entropy and Enthalpy Compensation}
+
+In many binding systems, changes in enthalpy (\(\Delta H\)) and entropy (\(\Delta S\)) compensate for each other. This compensation is often observed in protein-ligand interactions and can be analyzed through isothermal titration calorimetry (ITC).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Conclusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+
+Understanding binding models is essential for deciphering the complex interactions that govern biological systems. Wyman and Gill's approaches provide a robust framework for analyzing these interactions, especially in systems exhibiting cooperativity and allostery.
+
+\subsection{Key Takeaways}
+
+\begin{itemize}
+    \item Equilibrium constants are fundamental in describing binding interactions.
+    \item Cooperative binding can be modeled using the Hill equation and Wyman and Gill's linkage theory.
+    \item Advanced concepts such as allosteric regulation and entropy-enthalpy compensation provide deeper insights into molecular interactions.
+\end{itemize}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \bibliographystyle{unsrt}
+% \bibliography{binding_models}
+
+\end{document}
