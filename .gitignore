@@ -1,0 +1,119 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib64
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# vim
+*.swp
+
+# Mac file caches
+.DS_Store
+
+# PyCharm project settings
+.idea/
+
+.cache
+build.log
+mdtraj/rmsd/_rmsd.cpp
+# export of libtheolib
+/mdtraj/core/lib/*
+
+result/
+result
+
+# Ignore LaTeX specific intermediate files
+# Ignore auxiliary and intermediate files
+*.aux
+*.bbl
+*.blg
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.gz
+*.fls
+*.fdb_latexmk
+*.snm
+*.nav
+*.vrb
+*.synctex(busy)
+*.synctex.gz
+*.synctex(busy)
+*.dvi
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.xdv
+*.xdv
+*.thm
+*.alg
+*.acr
+*.glg
+*.glo
+*.gls
+*.ist
+*.acn
+*.out.ps
+*.lof
+*.lot
+*.maf
+*.idx
+*.ilg
+*.ind
+*.toc.bak
+*.blx.bib
+
+# Ignore folders often used for intermediate output
+/output
+/build
+/aux
+
+# Ignore any LaTeX editor specific settings or temporary files
+.vscode/
+.idea/
