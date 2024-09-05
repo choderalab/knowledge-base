@@ -1,0 +1,74 @@
+%! Author = alexpayne
+%! Date = 9/4/24
+
+% Preamble
+\documentclass[12pt, english, course]{lecture}
+
+% Packages
+\usepackage{amsmath}
+
+\title{Mathematical Foundations for Clustering, Similarity, and Network Analysis}
+
+% Document
+\begin{document}
+Two kinds of mathematical frameworks are discussed in this chapter: 
+clustering algorithms, and metrics for evaluating similarity and clustering performance.
+
+\section{Linear Algebra Distance Calculations}
+
+
+\section{Similarity Metrics}
+
+\subsection{Tanimoto Coefficient (also known as the Jaccard Index)}
+
+\textbf{Range:} 0-1
+\textbf{Higher is More Similar:} True
+
+We define the Tanimoto Coefficient (TC) between two sets (A, B) as such:
+\[TC(A,B) = TC(B,A) = \frac{|A\cap B|}{|A\cup B|}\ = \frac{|A\cap B|}{|A| + |B| - |A\cap B|}\]
+
+The related Jaccard Distance is simply $1-TC$. 
+
+This is a favorite for comparing bitmaps (i.e. chemical fingerprints), in part because calculating
+the intersection and union of two bitvectors is very efficient.
+
+As an example, given ligand A and ligand B with fingerprints:
+\[A = |0|1|0|1|0|\]
+\[B = |0|1|1|0|0|\]
+
+\[TC(A,B) = \frac{|0|1|0|0|0|}{|0|1|1|1|0|} = \frac{1}{3} = 0.33 \]
+
+\subsection{Dice-Sørensen Coefficient}
+
+\textbf{Range:} 0-1
+\textbf{Higher is More Similar:} True
+
+Following the conventions above, the Dice-Sørensen Coefficient can be calculated by:
+\[DC(A,B) = \frac{2|A\cap B|}{|A| + |B|}\]
+
+Although similar to the Tanimoto Coefficient, this function does not satisfy the triangle inequality and is much less frequently used.
+
+\section{Clustering Metrics}
+
+
+\subsubsection{Silhouette Coefficient}
+The silhouette coefficient is a measure of how similar an object is to its own cluster compared to other clusters.
+First we calculate the mean intra-cluster distance $a_i$ by taking the average of each distance $d(i,j)$ for each object $i$ in cluster $C_i$:
+\[
+    a_i = \frac{1}{|C_I| - 1} \sum_{j \in C_I, i \neq j} d(i, j)
+\]
+
+Next we calculate the mean nearest-cluster distance $b_i$ for each object $i$ in cluster $C_i$:
+\[
+    b_i = \min_{J \neq I} \frac{1}{|C_J|} \sum_{j \in C_J} d(i, j)
+\]
+
+Then we can define the silhouette coefficient is defined for each object $i$ as:
+\[
+    SC_i = \frac{b_i - a_i}{\max(a_i, b_i)}
+\]
+
+Finally, by taking the mean silhouette coefficient over all objects, the final value will be between -1 and 1,
+where a high value indicates a good clustering.
+
+\end{document}
