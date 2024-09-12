@@ -48,6 +48,19 @@ Following the conventions above, the Dice-Sørensen Coefficient can be calculate
 
 Although similar to the Tanimoto Coefficient, this function does not satisfy the triangle inequality and is much less frequently used.
 
+\subsection{Tversky Index}
+\textbf{Range:} 0-1
+\textbf{Higher is More Similar:} True
+
+The Tversky Index is a generalization of the Tanimoto Coefficient and Dice-Sørensen Coefficient, and is defined as:
+\[TI(A,B) = \frac{|A\cap B|}{\alpha|A \backslash  B| + \beta|B \backslash A| + |A\cap B|}\]
+
+Note that the Tanimoto Coefficient is a special case of the Tversky Index where $\alpha = \beta = 1$, and the Dice-Sørensen Coefficient is a special case where $\alpha = \beta = 0.5$. Although $\alpha$ and $\beta$ need not sum to 1, they are of special interest.
+If $\alpha \neq \beta$, the Tversky Index is asymmetric, and the value of $\alpha$ and $\beta$ can be tuned to emphasize the importance of the first or second set.
+
+\subsection{Cosine Similarity}
+
+
 \section{Clustering Metrics}
 
 
