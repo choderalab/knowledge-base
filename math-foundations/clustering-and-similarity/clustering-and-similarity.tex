@@ -21,7 +21,9 @@ clustering algorithms, and metrics for evaluating similarity and clustering perf
 
 \subsection{Tanimoto Coefficient (also known as the Jaccard Index)}
 
-\textbf{Range:} 0-1
+\textbf{Range:} 0--1
+
+
 \textbf{Higher is More Similar:} True
 
 We define the Tanimoto Coefficient (TC) between two sets (A, B) as such:
@@ -40,7 +42,7 @@ As an example, given ligand A and ligand B with fingerprints:
 
 \subsection{Dice-Sørensen Coefficient}
 
-\textbf{Range:} 0-1
+\textbf{Range:} 0--1
 \textbf{Higher is More Similar:} True
 
 Following the conventions above, the Dice-Sørensen Coefficient can be calculated by:
@@ -57,6 +59,23 @@ The Tversky Index is a generalization of the Tanimoto Coefficient and Dice-Søre
 
 Note that the Tanimoto Coefficient is a special case of the Tversky Index where $\alpha = \beta = 1$, and the Dice-Sørensen Coefficient is a special case where $\alpha = \beta = 0.5$. Although $\alpha$ and $\beta$ need not sum to 1, they are of special interest.
 If $\alpha \neq \beta$, the Tversky Index is asymmetric, and the value of $\alpha$ and $\beta$ can be tuned to emphasize the importance of the first or second set.
+
+\subsubsection{Proving that the Tanimoto Coefficient is a Special Case of the Tversky Index}
+\[|A \backslash B| = |A| - |A\cap B|\]
+\[|B \backslash A| = |B| - |A\cap B|\]
+\[Let \alpha = \beta = 1\]
+\[TI(A,B) = \frac{|A\cap B|}{|A \backslash  B| + |B \backslash A| + |A\cap B|}\]
+\[TI(A,B) = \frac{|A\cap B|}{|A| - |A\cap B| + |B| - |A\cap B| + |A\cap B|}\]
+\[TI(A,B) = \frac{|A\cap B|}{|A| + |B| - |A\cap B|}\]
+\[TI(A,B) = TC(A,B)\]
+
+\subsubsection{Proving that the Dice-Sørensen Coefficient is a Special Case of the Tversky Index}
+\[Let \alpha = \beta = 0.5\]
+\[TI(A,B) = \frac{|A\cap B|}{0.5|A \backslash  B| + 0.5|B \backslash A| + |A\cap B|}\]
+\[TI(A,B) = \frac{|A\cap B|}{0.5(|A| - |A\cap B|) + 0.5(|B| - |A\cap B|) + |A\cap B|}\]
+\[TI(A,B) = \frac{|A\cap B|}{0.5|A| - 0.5|A\cap B| + 0.5|B| - 0.5|A\cap B| + |A\cap B|}\]
+\[TI(A,B) = \frac{2|A\cap B|}{|A| + |B|}\]
+\[TI(A,B) = DC(A,B)\]
 
 \subsection{Cosine Similarity}
 
