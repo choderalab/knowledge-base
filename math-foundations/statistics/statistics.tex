@@ -1,0 +1,81 @@
+% !TeX root = molecular-dynamics.tex
+% !TeX outputDirectory = ../../tutorial-pdfs/
+
+\documentclass[english,course]{lecture}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+
+% Document metadata
+\title{Knowledge Base}
+\subtitle{Statistics and Probability}
+\subject{Math Foundations}
+\author{Alex Payne}
+\email{alex.payne@choderalab.org}
+\attn{Introduction to statistical modeling}
+\morelink{http://choderalab.org}
+%
+% Begin document
+\begin{document}
+
+\vfill
+\eject
+
+\section{Bayesian Principles of Model Prediction}
+
+The ideas discussed here form the foundation of machine learning,
+but they are general enough and applied in so many different places that they deserve their own place.
+
+\subsection{Maximum Likelihood Estimation}
+
+Assuming a model \(P(x; p)\) that predicts the probability of x, the likelihood of model parameter \(p\) given data \(x\) is notated as \(L(p; x)\).
+Maximum likelihood estimation on this single point \(p\), that is, finding a point \(p\) with the maximum likelihood, is equivalent to finding the maximum of \(L(p; x)\).
+Since \(\max\log(x)) = \max(x)\), it is common to find the log-likelihood \(l\) instead, as it turns what is typically a multiplication of probabilities into an addition of probabilities, which makes the calculus easier.
+As an example, take a Bernoulli case with 10 coin flips in which 8 of them came up heads. The likelihood of model parameter \(p\), the probability of a single coin flip to come up heads, is given by
+\[
+    L(p; 8H) = p^8 (1 - p)^2
+\]
+The log-likelihood is given by:
+\[\ell = \log[p^8 (1 - p)^2]\]
+\[\ell = \log[p^8] + \log[(1 - p)^2]\]
+\[\ell = 8\log[p] + 2\log[(1 - p)]\]
+
+Now finding the maximum of \( \ell \) is rather straightforward. We find where the derivative is zero!
+\[\frac{d \ell}{dp} = \frac{8}{p} + \frac{2}{1-p}\]
+\[0 = \frac{8}{p} + \frac{2}{1-p}\]
+Solve for p.
+\[p = 0.8\]
+
+As expected, we can see that \( \hat{p} = \bar{x} \).
+
+\subsubsection{MLE with a Gaussian Example}
+Let's say we've taken \(n\) samples, \(X = (x_1, x_2, \mathellipsis X_n)\) from a normal distribution such that
+\[X_i \sim \mathcal{N}(\mu, \sigma^2)\]
+
+We need to find the parameters of this normal distribution, \(\hat{\mu}\) and \(\hat{\sigma}\) that maximize the likelihood of \(X\).
+\[L(\mu, \sigma ; x) = \prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \sigma}} \e^{-\frac{1}{2} \frac{(x_i - \mu)^2}{\sigma^2}}\]
+\[\ell = -\frac{n}{2} \log(2 \pi) - n \log(\sigma) - \frac{1}{2}\sum_{i=1}^n \frac{(x_i - \mu)^2}{\sigma^2}\}\]
+\[\frac{\partial \ell}{\partial \mu} = -\frac{n\mu}{\sigma^2} + \frac{1}{\sigma^2}\sum_{i=1}^n x_i\]
+\[\frac{\partial \ell}{\partial \sigma} = -\frac{n}{\sigma} + \frac{1}{\sigma ^3}(\sum_{i=1}^n (x_i - mu)^2)\]
+
+Now if we find where both are zero, we find that:
+    \[\hat{\mu} = \bar{x}\]
+    \[\hat{\sigma} = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n}}\]
+\subsection{MLE for linear regression results in the linear least squares method!}
+In this case, our model is given by:
+\[f(x) = mx + b\]
+And we need to find \(\hat{m}\) and \(\hat{b}\) that maximize the likelihood of \(f(x)\) given some data \(X\).
+If we assume that our errors, \(d_i\), should follow a normal distribution \(\mu = 0\) and \(\sigma = 1\):
+\[d_i \sim \mathcal{N}(0, 1^2)\]
+\[d_i = y_i - m x_i + b\]
+Then we can find the most likely model by maximizing:
+\[L(m, b; x) = \prod_{i=1}^n e^{-\frac{1}{2}d_n^2}\]
+\[\ell(m, b; x) = \sum_{i=1}^n -\frac{1}{2} d_n^2\]
+\[-\ell(m, b; x) = \sum_{i=1}^n d_n^2\]
+Maximizing \(-\ell\) is equivalent to minimizing \(\ell\), which means now we need to find \(\hat{m}\) and \(\hat{b}\) that result in the smallest sum of the squared errors.
+The linear least squares method!
+
+    \subsection{Maximum A Posteriori}
+
+\end{document}
