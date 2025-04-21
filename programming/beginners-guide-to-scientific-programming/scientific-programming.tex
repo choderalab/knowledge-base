@@ -7,9 +7,48 @@
 % Packages
 \usepackage{amsmath}
 
-\title{A Beginners Guide to Scientific Programming}
+\title{A Beginners Guide to Scientific Programming in the Chodera Lab}
+\author{Alex Payne}
+\email{alex.payne@choderalab.org}
 
 % Document
 \begin{document}
+\section{The Chodera Lab Philosophy of Scientific Programming}
+\begin{itemize}
+    \item Non-reproducible science is just sparkling philosophy.
+    \item Computational science is only reproducible if the 1) data and 2) algorithms are accessible.
+    \item Hiding code behind a paywall or making it only "available upon request" is detrimental to scientific achievement.
+    \item Results are only useful if they come with confidence intervals.
+\end{itemize}
+
+\section{Languages and Computing Environments}
+Like most scientific software groups, we mainly use Python, usually as a wrapper for some core C or C++ code that only a few people actually know how to update.
+This means we tend to use an IDE such as PyCharm or VSCode, as the automatic detection and annotation of Python syntax is super useful.
+
+Pretty much any code that we write is expected to end up in a Github repo if anyone is expected to ever use it or see it referenced in a talk or a paper.
+We do not wait until publication to make our code public, unless it's code for running experiments that contains proprietary information (such as free energy calculations for a collaborator's undisclosed ligand).
+
+\section{The balance between building packages and annotating experiments}
+All of the code we write falls into one of these (partially overlapping categories).
+
+\textbf{Library Code}: Classes and functions, organized in modules with a package we are developing
+
+\textbf{Scripting}: Scripts which use library code to perform particular tasks, usually with various arguments enabled by argparse or click.
+
+\textbf{Scientific Code}: Anything which is used to collect and analyze the scientific data needed to run experiments, usually a combination of data files, README's, scripts, and jupyter notebooks.
+
+These three categories, although they blend quite often into each other, have distinct development priorities.
+For instance, while library code shouldn't contain filepaths, and likely shouldn't have both code for data collection and code for data analysis
+
+Venn Diagram
+    1 - Should be focused; optimized for performance; should be tested with continuous integration on multiple infrastructures to maintain usability.
+    2 - optimized for readability; likely won't be tested
+    3 - Should contain the data or a way to download the data; optimized for being a concise and accurate description of the requirements to reproduce the experiments; no CI but instead the environment and data should be made available
+    1+2 - Shouldn't contain filepaths
+    1+3
+    2+3 - Can perform a variety of tasks
+    1+2+3
+
+
 
 \end{document}
