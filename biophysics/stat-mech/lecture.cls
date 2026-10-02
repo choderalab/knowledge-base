@@ -7,7 +7,6 @@
 % Language (english,italian)
 \DeclareOption{english}{
   \newcommand{\notes@lang}{english}
-\dateenglish
   \newcommand{\notes@lecturename}{Lecture}
   \newcommand{\notes@theoremname}{theorem}
   \newcommand{\notes@propositionname}{proposition}
@@ -144,6 +143,7 @@
 }
 
 \ProcessOptions
+
 %%% Load default class
 \LoadClass[a4paper,11pt,\notes@columns,\notes@side]{article}%
 
