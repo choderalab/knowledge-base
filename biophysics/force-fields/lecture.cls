@@ -7,7 +7,6 @@
 % Language (english,italian)
 \DeclareOption{english}{
   \newcommand{\notes@lang}{english}
-\AtBeginDocument{\providecommand{\dateenglish}{}}
   \newcommand{\notes@lecturename}{Lecture}
   \newcommand{\notes@theoremname}{theorem}
   \newcommand{\notes@propositionname}{proposition}
@@ -144,6 +143,7 @@
 }
 
 \ProcessOptions
+
 %%% Load default class
 \LoadClass[a4paper,11pt,\notes@columns,\notes@side]{article}%
 
@@ -155,10 +155,7 @@
 
 %%% Common macroes
 \RequirePackage[\notes@lang]{babel}
-\RequirePackage{xcolor}
-\RequirePackage[hidelinks]{hyperref}
-\hypersetup{colorlinks,linkcolor=black,urlcolor=blue,citecolor=black}
-\providecommand*{\current@color}{0 g 0 G}
+\RequirePackage[pdftex,colorlinks,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
