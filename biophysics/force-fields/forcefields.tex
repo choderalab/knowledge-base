@@ -1,0 +1,235 @@
+% !TeX root = forcefields.tex
+
+\documentclass[english,course]{lecture}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% Document metadata
+\title{Knowledge Base}
+\subtitle{Force Fields: Classical to Machine-Learned}
+\shorttitle{Force fields}
+\subject{Biophysics}
+\author{Alex Payne}
+\email{alex.payne@choderalab.org}
+\attn{From molecular mechanics to machine learning potentials}
+\morelink{http://choderalab.org}
+%
+% Begin document
+\setcounter{tocdepth}{1} % deeper tocs overflow the page and trigger a color-stack error with current TeX Live
+\begin{document}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% READING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Recommended reading and supportive texts}
+
+\subsection*{Recommended reading}
+
+\noindent {\bf Understanding Molecular Simulation: From Algorithms to Applications}, Frenkel and Smit \\
+Standard reference for how potentials are used in simulation.
+
+\noindent {\bf Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges}, Bronstein, Bruna, Cohen, and Veli\v{c}kovi\'{c} \\
+Background on symmetry and equivariance in neural networks, which underlies modern ML potentials.
+\href{https://arxiv.org/abs/2104.13478}{[arXiv]}
+
+\subsection*{Key papers (to be filled in)}
+
+% TODO: add citations for each family below (Behler--Parrinello, ANI, SchNet, NequIP, MACE, Allegro, foundation models, espaloma).
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INTRODUCTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{What is a force field?}
+
+A force field is a model of the potential energy surface $V(\mathbf{r})$ of a molecular system as a function of nuclear coordinates $\mathbf{r}$. Forces on atoms are the negative gradient,
+\[
+\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V(\mathbf{r}),
+\]
+and drive the dynamics described in the molecular dynamics notes. The quality of any simulation---conformational ensembles, binding free energies, kinetics---is limited by the accuracy of $V$, so the choice of force field is one of the most consequential modeling decisions.
+
+The central trade-off is between \emph{accuracy} (how closely $V$ matches quantum mechanics or experiment) and \emph{cost} (energy and force evaluations are performed billions of times in a simulation).
+
+\subsection{How a force field is used}
+
+In an MD simulation (see the molecular dynamics notes), the force field is called at every timestep: given coordinates, return the energy and the force on every atom; the integrator then uses those forces to advance positions and velocities. Because this happens $10^6$--$10^9$ times in a typical simulation, evaluation speed matters as much as accuracy.
+
+% TODO: add a simple worked example (e.g.\ a diatomic or water dimer potential energy curve) and a figure of the potential energy surface.
+
+\subsection{Where force fields sit between QM and MM}
+
+Quantum mechanics (QM) is the most accurate description of the potential energy surface but is expensive; molecular mechanics (MM) force fields are cheap but approximate. Machine-learned force fields are, in effect, a bridge between the two: trained on QM data, evaluated at a cost closer to MM.
+
+\subsection{Goals when improving a force field}
+
+\begin{itemize}
+    \item \textbf{Increase speed}: cheaper energy and force evaluations allow longer and larger simulations.
+    \item \textbf{Increase accuracy}: closer agreement with QM or experiment (e.g.\ binding free energies).
+    \item \textbf{Increase domain of applicability}: cover more chemistry (elements, charge states, protein modifications, drug-like space) and more environments reliably.
+\end{itemize}
+These goals typically trade off against one another, and much of the research in this area is about moving the Pareto frontier.
+
+\subsection{Properties a good potential should have}
+
+\begin{itemize}
+    \item \textbf{Smooth and differentiable}, with forces that are consistent with the energy (conservative forces).
+    \item \textbf{Invariant} to translation, rotation, and permutation of identical atoms.
+    \item \textbf{Extensive} (or local), so cost scales roughly linearly with system size.
+    \item \textbf{Transferable} to molecules and environments not seen during parameterization.
+\end{itemize}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CLASSICAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Classical (molecular mechanics) force fields}
+
+\subsection{Functional form}
+
+Biomolecular force fields such as AMBER, CHARMM, OPLS, and OpenFF decompose the energy into bonded and nonbonded terms:
+\[
+V = \sum_{\text{bonds}} \tfrac{1}{2}k_b (b - b_0)^2
+  + \sum_{\text{angles}} \tfrac{1}{2}k_\theta (\theta - \theta_0)^2
+  + \sum_{\text{torsions}} \sum_n k_n \left[1 + \cos(n\phi - \delta_n)\right]
+  + \sum_{i<j} \left[ 4\epsilon_{ij}\left(\frac{\sigma_{ij}^{12}}{r_{ij}^{12}} - \frac{\sigma_{ij}^{6}}{r_{ij}^{6}}\right) + \frac{q_i q_j}{4\pi\varepsilon_0 r_{ij}} \right].
+\]
+The last term combines Lennard-Jones and Coulomb interactions; the Lennard-Jones potential is introduced in the statistical mechanics notes.
+
+\subsection{Parameterization and atom typing}
+
+Parameters are assigned by matching atoms to \emph{atom types} or chemical environments, then fit to quantum chemical data and experimental observables (densities, enthalpies of vaporization, hydration free energies). Charges are commonly assigned by RESP or AM1-BCC.
+
+\subsection{Limitations}
+
+\begin{itemize}
+    \item Fixed functional form: no bond breaking, limited polarization, no charge transfer.
+    \item Fixed (non-polarizable) charges in most widely used models.
+    \item Parameter coverage for drug-like chemical space is a continual maintenance burden.
+\end{itemize}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ML FORCE FIELDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Machine learning force fields}
+
+\subsection{Motivation}
+
+Quantum mechanical (QM) methods are accurate but scale steeply with system size. Machine learning (ML) potentials learn a mapping from atomic configuration to energy from QM reference data, aiming for near-QM accuracy at a cost closer to classical force fields.
+
+\subsection{Using ML to improve binding affinity predictions}
+
+A central question for the lab is how machine learning can improve binding free energy predictions. There are three broad routes:
+
+\begin{enumerate}
+    \item \textbf{ML--MM force fields}: a model predicts molecular mechanics parameters from the molecular graph (e.g.\ espaloma), keeping the speed and interpretability of the classical functional form.
+    \item \textbf{ML potentials}: a neural network replaces the entire energy function (ANI, SchNet, NequIP, MACE, \ldots), either for the whole system or for a region such as the ligand.
+    \item \textbf{ML corrections to affinity predictions}: a classical calculation is run and an ML model learns a correction to the resulting free energy or to the energy surface (e.g.\ MM$\to$ML reweighting or $\Delta$-learning).
+\end{enumerate}
+
+% TODO: add pros/cons of each route, and example papers.
+
+\subsection{Architectures}
+
+\subsubsection*{Atom-centered descriptors}
+Behler--Parrinello networks and ANI-style models write the energy as a sum of atomic contributions, each a neural network function of symmetry-function descriptors of the local environment.
+
+\subsubsection*{Message-passing neural networks}
+Atoms are nodes in a graph with edges between neighbors within a cutoff; learned messages are exchanged over several layers (e.g.\ SchNet).
+
+\subsubsection*{Equivariant networks}
+Features carry irreducible representations of $SO(3)$ so that vector and tensor quantities rotate correctly with the molecule (NequIP, Allegro, MACE). These typically achieve better data efficiency and accuracy than invariant models.
+
+\subsection{Training}
+
+Training minimizes a loss on energies and, importantly, forces:
+\[
+\mathcal{L} = \lambda_E \left(E_{\text{pred}} - E_{\text{ref}}\right)^2 + \frac{\lambda_F}{3N}\sum_{i=1}^{N} \left\lVert \mathbf{F}_{i}^{\text{pred}} - \mathbf{F}_{i}^{\text{ref}} \right\rVert^2,
+\]
+with predicted forces obtained by automatic differentiation of the predicted energy.
+
+\subsection{Datasets and levels of theory}
+
+% TODO: summarize common datasets (ANI-1x, SPICE, QM9, MD17, OMol/OMat-type large-scale sets), the DFT functionals and basis sets used, and the implications for transferability.
+
+\subsection{Pretrained and foundation models}
+
+% TODO: survey of universal/foundation potentials, fine-tuning workflows, and benchmarks.
+
+\subsection{Known challenges}
+
+\begin{itemize}
+    \item \textbf{Long-range interactions}: electrostatics and dispersion beyond the cutoff are often missing or handled separately.
+    \item \textbf{Charge and spin states}: many models are trained for neutral closed-shell systems only.
+    \item \textbf{Extrapolation and robustness}: unphysical behavior in regions of configuration space absent from training data.
+    \item \textbf{Cost}: still orders of magnitude slower than classical force fields for large biomolecular systems.
+    \item \textbf{Energy conservation and stability} in long MD trajectories.
+\end{itemize}
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BEST PRACTICES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Best practices for force field development}
+
+The Open Force Field (OpenFF) community has developed practices for building and validating force fields in a reproducible way.
+
+% TODO: summarize OpenFF practices, e.g. versioned and openly available training and benchmark datasets, automated fitting pipelines (such as the OpenFF BespokeFit/Evaluator/Fitting tooling), held-out benchmark sets, transparent release notes, and reporting of uncertainty. Verify each point against OpenFF documentation before writing.
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MD WITH ML POTENTIALS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Running molecular dynamics with ML potentials}
+
+\subsection{Mixed ML/MM simulations}
+
+Embedding an ML-described region (e.g.\ a ligand) in a classical environment (protein and solvent) balances accuracy and cost. Care is needed for the interface and for the coupling of electrostatics.
+
+\subsection{Free energy calculations}
+
+Alchemical and path-based free energy methods require the potential to be evaluated along a transformation; see the MD and binding-models notes. Using an ML potential for the end states or as a correction to a classical calculation is an active research area.
+
+\subsection{Software tools}
+
+% TODO: list and describe tooling (OpenMM, OpenMM-ML, TorchANI, MACE, ASE, openmmtools, openff toolkit).
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONCLUSION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+\subsection{Key Takeaways}
+
+\begin{itemize}
+    \item A force field defines the potential energy surface; its accuracy bounds the accuracy of any simulation.
+    \item Classical force fields are fast and interpretable but limited by their fixed functional form.
+    \item ML potentials learn the energy surface from QM data and can approach QM accuracy at far lower cost, subject to training data coverage.
+    \item Symmetry-respecting (equivariant) architectures and force-based training are central to modern ML potentials.
+    \item Long-range physics, robustness, and cost remain open challenges.
+    \item Improvements should be judged against the goals of speed, accuracy, and domain of applicability, using community benchmarks.
+\end{itemize}
+
+\end{document}

@@ -28,6 +28,7 @@ We have divided this guide up into four major sections: Cell biology, Biophysics
 
 ### Machine Learning
 - Basics of ML
+- Force fields: classical to machine-learned
 - Deep learning architectures
 - Tools and best practices
 - Applications in drug discovery
