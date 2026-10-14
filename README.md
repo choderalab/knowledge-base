@@ -23,6 +23,7 @@ We have divided this guide up into four major sections: Cell biology, Biophysics
 - Molecular dynamics 101
 - Free energy calculations
 - Binding models and chemical interactions
+- Quantum mechanics: amplitudes, waves, and spin
 - Analysis of molecular dynamics
 - Software tools for success
 
