@@ -4,6 +4,17 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{xcolor}
+% Colours follow the QM study-group slides: one colour per quantity
+\definecolor{qmH}{HTML}{4E67C8}       % height H
+\definecolor{qmA}{HTML}{F14124}       % amplitude A
+\definecolor{qmPhase}{HTML}{7030A0}   % phase theta (and phase difference delta)
+\definecolor{qmOmega}{HTML}{FF8021}   % angular frequency omega
+\definecolor{qmK}{HTML}{6B913C}       % wave number k
+\definecolor{qmPeriod}{HTML}{DF2CB2}  % period T and wavelength lambda
+\definecolor{qmCx}{HTML}{5ECCF3}      % complex wave h
+\definecolor{qmR}{HTML}{FF84FA}       % distance r from a source
+\newcommand{\qc}[2]{{\color{#1}#2}}
 \usepackage{hyperref}
 
 % Document metadata
@@ -70,69 +81,71 @@ Most of this material was worked out in two interactive notebooks (\texttt{spino
 
 Quantum amplitudes behave like waves, so we start with an ordinary wave, such as the height of the surface of water, written with a cosine. Every such wave is built from one function, so we start with that function alone, and then describe the wave in three steps: how it varies in time at one position, how it varies in space at one moment, and then both together.
 
+\paragraph{Colour code.} As in the study-group slides, each quantity has one colour in equations and figures: height $\qc{qmH}{H}$ (blue), amplitude $\qc{qmA}{A}$ (red), phase $\qc{qmPhase}{\theta}$ and phase difference $\qc{qmPhase}{\delta}$ (purple), angular frequency $\qc{qmOmega}{\omega}$ (orange), wave number $\qc{qmK}{k}$ (green), period $\qc{qmPeriod}{T}$ and wavelength $\qc{qmPeriod}{\lambda}$ (magenta), the complex wave $\qc{qmCx}{h}$ (light blue), and the distance $\qc{qmR}{r}$ from a source (pink).
+
 \subsection{The phase}
 \label{sec:phase}
 
 Consider
 \[
-H(\theta)=A\cos\theta,
+\qc{qmH}{H}(\qc{qmPhase}{\theta})=\qc{qmA}{A}\cos\qc{qmPhase}{\theta},
 \]
-where $\theta$ is an angle in radians. The angle $\theta$ is called the \textbf{phase}: it says how far through its cycle the cosine has got. At $\theta=0$ the cosine is at a crest ($H=A$), at $\theta=\pi/2$ it crosses zero on the way down, at $\theta=\pi$ it is at a trough ($H=-A$), and at $\theta=2\pi$ it is back at the crest. The cosine therefore repeats whenever the phase grows by $2\pi$. The amplitude $A$ is the largest height; the phase decides where in the cycle the height is. The same value can be pictured as an arrow of length $A$ turning on a circle: the phase is the angle of the arrow and $H$ is its horizontal part. This picture returns in section~\ref{sec:complexwaves}.
+where $\qc{qmPhase}{\theta}$ is an angle in radians. The angle $\qc{qmPhase}{\theta}$ is called the \textbf{phase}: it says how far through its cycle the cosine has got. At $\qc{qmPhase}{\theta}=0$ the cosine is at a crest ($\qc{qmH}{H}=\qc{qmA}{A}$), at $\qc{qmPhase}{\theta}=\pi/2$ it crosses zero on the way down, at $\qc{qmPhase}{\theta}=\pi$ it is at a trough ($\qc{qmH}{H}=-\qc{qmA}{A}$), and at $\qc{qmPhase}{\theta}=2\pi$ it is back at the crest. The cosine therefore repeats whenever the phase grows by $2\pi$. The amplitude $\qc{qmA}{A}$ is the largest height; the phase decides where in the cycle the height is. The same value can be pictured as an arrow of length $\qc{qmA}{A}$ turning on a circle: the phase is the angle of the arrow and $\qc{qmH}{H}$ is its horizontal part. This picture returns in section~\ref{sec:complexwaves}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/wave-phase.png}
-\caption{The cosine against its phase $\theta$ (left) and the same value as the horizontal part of an arrow of length $A$ at angle $\theta$ (right). The black point on the curve and the black segment on the circle show the same height $H(\theta)$.}
+\caption{The cosine against its phase $\qc{qmPhase}{\theta}$ (left) and the same value as the horizontal part of an arrow of length $\qc{qmA}{A}$ at angle $\qc{qmPhase}{\theta}$ (right). The blue point on the curve and the blue segment on the circle show the same height $\qc{qmH}{H}(\qc{qmPhase}{\theta})$.}
 \end{figure}
 
-Everything below is this one function with a particular phase: $\theta=\omega t$ at a fixed position, $\theta=kx$ at a fixed moment, and $\theta=kx-\omega t$ in general.
+Everything below is this one function with a particular phase: $\qc{qmPhase}{\theta}=\qc{qmOmega}{\omega} t$ at a fixed position, $\qc{qmPhase}{\theta}=\qc{qmK}{k}x$ at a fixed moment, and $\qc{qmPhase}{\theta}=\qc{qmK}{k}x-\qc{qmOmega}{\omega} t$ in general.
 
 \subsection{Oscillation in time}
 
 At a fixed position the height oscillates as
 \[
-H(t)=A\cos(\omega t).
+\qc{qmH}{H}(t)=\qc{qmA}{A}\cos(\qc{qmOmega}{\omega} t).
 \]
-The \textbf{amplitude} $A$ is the largest height reached. The argument of the cosine is now the phase $\theta=\omega t$, which grows by $\omega$ in every unit of time, so $\omega$ is the number of radians covered per unit time: the \textbf{angular frequency}. The cosine repeats when its argument has grown by $2\pi$, after the \textbf{period} $T=2\pi/\omega$; the number of oscillations per unit time is the frequency $f=1/T=\omega/2\pi$.
+The \textbf{amplitude} $\qc{qmA}{A}$ is the largest height reached. The argument of the cosine is now the phase $\qc{qmPhase}{\theta}=\qc{qmOmega}{\omega} t$, which grows by $\qc{qmOmega}{\omega}$ in every unit of time, so $\qc{qmOmega}{\omega}$ is the number of radians covered per unit time: the \textbf{angular frequency}. The cosine repeats when its argument has grown by $2\pi$, after the \textbf{period} $\qc{qmPeriod}{T}=2\pi/\qc{qmOmega}{\omega}$; the number of oscillations per unit time is the frequency $f=1/\qc{qmPeriod}{T}=\qc{qmOmega}{\omega}/2\pi$.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{figures/wave-time-features.png}
-\caption{Where each quantity appears on the graph of $H(t)=A\cos(\omega t)$. The amplitude $A$ is a height (red). The period $T$ is the horizontal distance between crests. The time $t$ and the height $H(t)$ are the horizontal and vertical positions of a point on the curve. The angular frequency $\omega$ is not a length: it is the rate at which the phase $\omega t$ (top scale) grows, reaching $2\pi$ at $t=T$, so $\omega=2\pi/T$. Lower panel: doubling $\omega$ halves the period.}
+\caption{Where each quantity appears on the graph of $\qc{qmH}{H}(t)=\qc{qmA}{A}\cos(\qc{qmOmega}{\omega} t)$. The amplitude $\qc{qmA}{A}$ is a height (red). The period $\qc{qmPeriod}{T}$ is the horizontal distance between crests. The time $t$ and the height $\qc{qmH}{H}(t)$ are the horizontal and vertical positions of a point on the curve. The angular frequency $\qc{qmOmega}{\omega}$ is not a length: it is the rate at which the phase $\qc{qmOmega}{\omega} t$ (top scale) grows, reaching $2\pi$ at $t=\qc{qmPeriod}{T}$, so $\qc{qmOmega}{\omega}=2\pi/\qc{qmPeriod}{T}$. Lower panel: doubling $\qc{qmOmega}{\omega}$ halves the period.}
 \end{figure}
 
 \subsection{Variation in space}
 
-At a fixed moment the height varies along the line as $H(x)=A\cos(kx)$. The phase is now $\theta=kx$, which grows by $k$ in every unit of distance, so $k$ is the number of radians per unit length: the \textbf{wave number}, the counterpart in space of $\omega$. The cosine repeats after the \textbf{wavelength} $\lambda=2\pi/k$, the counterpart of the period.
+At a fixed moment the height varies along the line as $\qc{qmH}{H}(x)=\qc{qmA}{A}\cos(\qc{qmK}{k}x)$. The phase is now $\qc{qmPhase}{\theta}=\qc{qmK}{k}x$, which grows by $\qc{qmK}{k}$ in every unit of distance, so $\qc{qmK}{k}$ is the number of radians per unit length: the \textbf{wave number}, the counterpart in space of $\qc{qmOmega}{\omega}$. The cosine repeats after the \textbf{wavelength} $\qc{qmPeriod}{\lambda}=2\pi/\qc{qmK}{k}$, the counterpart of the period.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{figures/wave-space-features.png}
-\caption{The same graph with position in place of time, for $H(x)=A\cos(kx)$. The wavelength $\lambda$ is a length: the horizontal distance between crests. The wave number $k$ is the rate at which the phase $kx$ (top scale) grows along the line, reaching $2\pi$ at $x=\lambda$, so $k=2\pi/\lambda$. Lower panel: doubling $k$ halves the wavelength.}
+\caption{The same graph with position in place of time, for $\qc{qmH}{H}(x)=\qc{qmA}{A}\cos(\qc{qmK}{k}x)$. The wavelength $\qc{qmPeriod}{\lambda}$ is a length: the horizontal distance between crests. The wave number $\qc{qmK}{k}$ is the rate at which the phase $\qc{qmK}{k}x$ (top scale) grows along the line, reaching $2\pi$ at $x=\qc{qmPeriod}{\lambda}$, so $\qc{qmK}{k}=2\pi/\qc{qmPeriod}{\lambda}$. Lower panel: doubling $\qc{qmK}{k}$ halves the wavelength.}
 \end{figure}
 
 \subsection{A travelling wave}
 
 A wave that varies in both is
 \[
-H(x,t)=A\cos(kx-\omega t).
+\qc{qmH}{H}(x,t)=\qc{qmA}{A}\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t).
 \]
-The argument $kx-\omega t$ is again the \textbf{phase}, now depending on both position and time. A crest is a point of fixed phase, $kx-\omega t=\text{const}$, so $x=(\omega/k)\,t$ plus a constant, and the whole pattern moves at the \emph{phase velocity}
+The argument $\qc{qmK}{k}x-\qc{qmOmega}{\omega} t$ is again the \textbf{phase}, now depending on both position and time. A crest is a point of fixed phase, $\qc{qmK}{k}x-\qc{qmOmega}{\omega} t=\text{const}$, so $x=(\qc{qmOmega}{\omega}/\qc{qmK}{k})\,t$ plus a constant, and the whole pattern moves at the \emph{phase velocity}
 \[
-v_{\text{phase}}=\frac{\omega}{k}=\frac{\lambda}{T}.
+v_{\text{phase}}=\frac{\qc{qmOmega}{\omega}}{\qc{qmK}{k}}=\frac{\qc{qmPeriod}{\lambda}}{\qc{qmPeriod}{T}}.
 \]
-This form follows from the motion of a source. If a source at $x=0$ moves as $A\cos(\omega t)$ and the disturbance travels outward at speed $v$, the motion at distance $r$ is that of the source a time $r/v$ earlier, $A\cos(\omega t-kr)$ with $k=\omega/v$, which equals $A\cos(kr-\omega t)$. \textbf{The distance from the source enters only through the phase $kr$}, which increases by $2\pi$ for each further wavelength. Here $r$ is the distance from the source, which plays the role of the position $x$ along the direction in which the wave travels: for a wave moving along a line, $r=x$ and this is $A\cos(kx-\omega t)$. In section~\ref{sec:interference}, $r_1$ and $r_2$ are the distances from two sources (two holes) to a detector, and $x$ is the position of the detector along a line behind the wall. The speed of the pattern is not the speed of a particle (section~\ref{sec:packets}).
+This form follows from the motion of a source. If a source at $x=0$ moves as $\qc{qmA}{A}\cos(\qc{qmOmega}{\omega} t)$ and the disturbance travels outward at speed $v$, the motion at distance $\qc{qmR}{r}$ is that of the source a time $\qc{qmR}{r}/v$ earlier, $\qc{qmA}{A}\cos(\qc{qmOmega}{\omega} t-\qc{qmK}{k}\qc{qmR}{r})$ with $\qc{qmK}{k}=\qc{qmOmega}{\omega}/v$, which equals $\qc{qmA}{A}\cos(\qc{qmK}{k}\qc{qmR}{r}-\qc{qmOmega}{\omega} t)$. \textbf{The distance from the source enters only through the phase $\qc{qmK}{k}\qc{qmR}{r}$}, which increases by $2\pi$ for each further wavelength. Here $\qc{qmR}{r}$ is the distance from the source, which plays the role of the position $x$ along the direction in which the wave travels: for a wave moving along a line, $\qc{qmR}{r}=x$ and this is $\qc{qmA}{A}\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)$. In section~\ref{sec:interference}, $\qc{qmR}{r}_1$ and $\qc{qmR}{r}_2$ are the distances from two sources (two holes) to a detector, and $x$ is the position of the detector along a line behind the wall. The speed of the pattern is not the speed of a particle (section~\ref{sec:packets}).
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/wave-travelling-features.png}
-\caption{Both variables at once, for $H(x,t)=A\cos(kx-\omega t)$. Left: height against position at two times; a crest has moved to the right by $(\omega/k)\,t$. Right: height against time at two fixed positions; the crest reaches the farther position later, after a delay $(k/\omega)\,x$. The space graph and the time graph are two slices of the same wave.}
+\caption{Both variables at once, for $\qc{qmH}{H}(x,t)=\qc{qmA}{A}\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)$. Left: height against position at two times; a crest has moved to the right by $(\qc{qmOmega}{\omega}/\qc{qmK}{k})\,t$. Right: height against time at two fixed positions; the crest reaches the farther position later, after a delay $(\qc{qmK}{k}/\qc{qmOmega}{\omega})\,x$. The space graph and the time graph are two slices of the same wave.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/wave-surface.png}
-\caption{The whole wave as a surface, $H(x,t)=A\cos(kx-\omega t)$ with $A=1.5$, $k=1.5$, $\omega=2$. The black curve is the slice $t=0$ (the space graph) and the green curve is the slice $x=0$ (the time graph). The ridges are the crests; they run diagonally because a crest moves along $x$ as $t$ advances, at speed $\omega/k$. Changing $A$ changes the height of the ridges, $k$ their spacing along $x$, and $\omega$ their spacing along $t$.}
+\caption{The whole wave as a surface, $\qc{qmH}{H}(x,t)=\qc{qmA}{A}\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)$ with $\qc{qmA}{A}=1.5$, $\qc{qmK}{k}=1.5$, $\qc{qmOmega}{\omega}=2$. The green curve is the slice $t=0$ (the space graph, set by $\qc{qmK}{k}$) and the orange curve is the slice $x=0$ (the time graph, set by $\qc{qmOmega}{\omega}$). The ridges are the crests; they run diagonally because a crest moves along $x$ as $t$ advances, at speed $\qc{qmOmega}{\omega}/\qc{qmK}{k}$. Changing $\qc{qmA}{A}$ changes the height of the ridges, $\qc{qmK}{k}$ their spacing along $x$, and $\qc{qmOmega}{\omega}$ their spacing along $t$.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,37 +159,37 @@ For classical waves such as water, writing the wave with complex numbers is a ne
 
 \subsection{An arrow in the plane}
 
-A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizontal component (real part), $b$ the vertical component (imaginary part). The arrow has a length $|z|$ and points at some angle from the horizontal axis. The arrow of length 1 at angle $\theta$ (in radians) is written
+A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizontal component (real part), $b$ the vertical component (imaginary part). The arrow has a length $|z|$ and points at some angle from the horizontal axis. The arrow of length 1 at angle $\qc{qmPhase}{\theta}$ (in radians) is written
 \[
-e^{i\theta}=\cos\theta+i\sin\theta,
+e^{i\qc{qmPhase}{\theta}}=\cos\qc{qmPhase}{\theta}+i\sin\qc{qmPhase}{\theta},
 \]
-with horizontal component $\cos\theta$ and vertical component $\sin\theta$. An arrow of length $A$ at the same angle is $A$ times this,
+with horizontal component $\cos\qc{qmPhase}{\theta}$ and vertical component $\sin\qc{qmPhase}{\theta}$. An arrow of length $\qc{qmA}{A}$ at the same angle is $\qc{qmA}{A}$ times this,
 \[
-h(\theta)=A\,e^{i\theta}=A\cos\theta+iA\sin\theta .
+\qc{qmCx}{h}(\qc{qmPhase}{\theta})=\qc{qmA}{A}\,e^{i\qc{qmPhase}{\theta}}=\qc{qmA}{A}\cos\qc{qmPhase}{\theta}+i\qc{qmA}{A}\sin\qc{qmPhase}{\theta} .
 \]
-This is the arrow in the right panel of the figure in section~\ref{sec:phase}, and the angle $\theta$ is the \emph{phase} of that section. Its horizontal component is the cosine of section~\ref{sec:phase},
+This is the arrow in the right panel of the figure in section~\ref{sec:phase}, and the angle $\qc{qmPhase}{\theta}$ is the \emph{phase} of that section. Its horizontal component is the cosine of section~\ref{sec:phase},
 \[
-H(\theta)=A\cos\theta=\operatorname{Re}\,h(\theta),
+\qc{qmH}{H}(\qc{qmPhase}{\theta})=\qc{qmA}{A}\cos\qc{qmPhase}{\theta}=\operatorname{Re}\,\qc{qmCx}{h}(\qc{qmPhase}{\theta}),
 \]
-where $\operatorname{Re}$ means the real part. A notation is fixed here and used from now on: the capital $H$ is the \textbf{real height} of the wave, and the lowercase $h$ is the \textbf{complex} number, the arrow, whose real part is $H$.
+where $\operatorname{Re}$ means the real part. A notation is fixed here and used from now on: the capital $\qc{qmH}{H}$ is the \textbf{real height} of the wave, and the lowercase $\qc{qmCx}{h}$ is the \textbf{complex} number, the arrow, whose real part is $\qc{qmH}{H}$.
 
 \subsection{The real wave is the horizontal component of a turning arrow}
 
-Now replace the phase $\theta$ by the phase of section~\ref{sec:waves}, $\theta=kx-\omega t$. The \textbf{complex wave} is
+Now replace the phase $\qc{qmPhase}{\theta}$ by the phase of section~\ref{sec:waves}, $\qc{qmPhase}{\theta}=\qc{qmK}{k}x-\qc{qmOmega}{\omega} t$. The \textbf{complex wave} is
 \[
-h(x,t)=A\,e^{i(kx-\omega t)},
+\qc{qmCx}{h}(x,t)=\qc{qmA}{A}\,e^{i(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)},
 \]
 and its real part is the wave of section~\ref{sec:waves},
 \[
-H(x,t)=\operatorname{Re}\,h(x,t)=A\cos(kx-\omega t).
+\qc{qmH}{H}(x,t)=\operatorname{Re}\,\qc{qmCx}{h}(x,t)=\qc{qmA}{A}\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t).
 \]
-These are equal for every $x$ and $t$: $H$ is the real wave, and $h$ is the arrow of length $A$ at angle $kx-\omega t$ of which $H$ is the horizontal component. The vertical component is $A\sin(kx-\omega t)$, the same wave a quarter of a period later. A wave with a starting phase, $A\cos(kx-\omega t+\theta_0)$, is the real part of $h=a\,e^{i(kx-\omega t)}$ with the \emph{complex amplitude} $a=Ae^{i\theta_0}$, so one complex number holds both the size and the starting phase. The quantities above now have a geometric meaning.
+These are equal for every $x$ and $t$: $\qc{qmH}{H}$ is the real wave, and $\qc{qmCx}{h}$ is the arrow of length $\qc{qmA}{A}$ at angle $\qc{qmK}{k}x-\qc{qmOmega}{\omega} t$ of which $\qc{qmH}{H}$ is the horizontal component. The vertical component is $\qc{qmA}{A}\sin(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)$, the same wave a quarter of a period later. A wave with a starting phase, $\qc{qmA}{A}\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t+\qc{qmPhase}{\theta}_0)$, is the real part of $\qc{qmCx}{h}=a\,e^{i(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)}$ with the \emph{complex amplitude} $a=\qc{qmA}{A}e^{i\qc{qmPhase}{\theta}_0}$, so one complex number holds both the size and the starting phase. The quantities above now have a geometric meaning.
 
-\paragraph{$\omega$ turns the arrow in time.} At a fixed position the arrow is $h(t)=\big(Ae^{ikx}\big)e^{-i\omega t}$. The bracket does not change with time and the phase $-\omega t$ of the second factor grows in proportion to time, so the arrow turns at a steady rate: \textbf{$\omega$ is the number of radians through which it turns per unit time}, and one turn takes the period $T=2\pi/\omega$. (Some texts write $e^{+i\omega t}$, so the arrow turns the other way; that reverses every phase and changes no intensity.)
+\paragraph{$\qc{qmOmega}{\omega}$ turns the arrow in time.} At a fixed position the arrow is $\qc{qmCx}{h}(t)=\big(\qc{qmA}{A}e^{i\qc{qmK}{k}x}\big)e^{-i\qc{qmOmega}{\omega} t}$. The bracket does not change with time and the phase $-\qc{qmOmega}{\omega} t$ of the second factor grows in proportion to time, so the arrow turns at a steady rate: \textbf{$\qc{qmOmega}{\omega}$ is the number of radians through which it turns per unit time}, and one turn takes the period $\qc{qmPeriod}{T}=2\pi/\qc{qmOmega}{\omega}$. (Some texts write $e^{+i\qc{qmOmega}{\omega} t}$, so the arrow turns the other way; that reverses every phase and changes no intensity.)
 
-\paragraph{$k$ twists the arrow in space.} At a fixed time the arrow at position $x$ is $h(x)=\big(Ae^{-i\omega t}\big)e^{ikx}$, so neighboring arrows are turned relative to one another: \textbf{$k$ is the number of radians through which the arrow turns per unit length}, and one turn takes the wavelength $\lambda=2\pi/k$.
+\paragraph{$\qc{qmK}{k}$ twists the arrow in space.} At a fixed time the arrow at position $x$ is $\qc{qmCx}{h}(x)=\big(\qc{qmA}{A}e^{-i\qc{qmOmega}{\omega} t}\big)e^{i\qc{qmK}{k}x}$, so neighboring arrows are turned relative to one another: \textbf{$\qc{qmK}{k}$ is the number of radians through which the arrow turns per unit length}, and one turn takes the wavelength $\qc{qmPeriod}{\lambda}=2\pi/\qc{qmK}{k}$.
 
-Together, the arrow at each position turns in time at rate $\omega$ while neighboring positions are turned at rate $k$, and the crests of its horizontal component move at $\omega/k$. \textbf{Nothing has been added to the description: the real wave and the turning arrow are the same wave written in two ways.}
+Together, the arrow at each position turns in time at rate $\qc{qmOmega}{\omega}$ while neighboring positions are turned at rate $\qc{qmK}{k}$, and the crests of its horizontal component move at $\qc{qmOmega}{\omega}/\qc{qmK}{k}$. \textbf{Nothing has been added to the description: the real wave and the turning arrow are the same wave written in two ways.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% INTERFERENCE
@@ -185,47 +198,63 @@ Together, the arrow at each position turns in time at rate $\omega$ while neighb
 \section{Adding waves: interference}
 \label{sec:interference}
 
-Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2. (These are distances from each hole to the detector, as in section~\ref{sec:waves}, not the position $x$ of the detector along the line behind the wall, which appears in the figure.)
+Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\qc{qmPeriod}{\lambda}=2\pi/\qc{qmK}{k}$ and angular frequency $\qc{qmOmega}{\omega}$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $\qc{qmR}{r}_1$ from hole~1 and $\qc{qmR}{r}_2$ from hole~2. (These are distances from each hole to the detector, as in section~\ref{sec:waves}, not the position $x$ of the detector along the line behind the wall, which appears in the figure.)
 
 The calculation goes in steps, from the complex waves to the real height.
 
-\paragraph{Step 1: one complex wave for each hole.} By section~\ref{sec:waves} the real height at the detector from hole~1 is $H_1(t)=A_1\cos(kr_1-\omega t)$, with $A_1$ the size of the wave at the detector. Its complex wave, in the notation of section~\ref{sec:complexwaves}, is
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/two-hole-schematic.png}
+\caption{The two-hole experiment. A wave of wavelength $\qc{qmPeriod}{\lambda}$ arrives from the left at a wall with two holes a distance $d$ apart. Each hole sends out circular waves (blue; crests are one wavelength apart). A detector on the line at distance $L$ sits at position $x$ along that line; its distances from the holes are $\qc{qmR}{r}_1$ and $\qc{qmR}{r}_2$ (pink). The difference in path length gives a phase difference $\qc{qmPhase}{\delta}=\qc{qmK}{k}(\qc{qmR}{r}_2-\qc{qmR}{r}_1)$ (purple) between the two waves, and the intensity along the detector line (right) rises and falls as $\qc{qmPhase}{\delta}$ changes with $x$.}
+\end{figure}
+
+
+\paragraph{Step 1: one complex wave for each hole.} By section~\ref{sec:waves} the real height at the detector from hole~1 is $\qc{qmH}{H}_1(t)=\qc{qmA}{A}_1\cos(\qc{qmK}{k}\qc{qmR}{r}_1-\qc{qmOmega}{\omega} t)$, with $\qc{qmA}{A}_1$ the size of the wave at the detector. Its complex wave, in the notation of section~\ref{sec:complexwaves}, is
 \[
-h_1(t)=A_1e^{i(kr_1-\omega t)},\qquad H_1(t)=\operatorname{Re}\,h_1(t).
+\qc{qmCx}{h}_1(t)=\qc{qmA}{A}_1e^{i(\qc{qmK}{k}\qc{qmR}{r}_1-\qc{qmOmega}{\omega} t)},\qquad \qc{qmH}{H}_1(t)=\operatorname{Re}\,\qc{qmCx}{h}_1(t).
 \]
-The direction of this arrow is the phase $kr_1-\omega t$: the part $kr_1$ is set by the distance from the hole (one more wavelength turns it by $2\pi$) and the part $-\omega t$ turns the arrow in time. Hole~2 gives $h_2(t)=A_2e^{i(kr_2-\omega t)}$ and $H_2(t)=\operatorname{Re}\,h_2(t)$.
+The direction of this arrow is the phase $\qc{qmK}{k}\qc{qmR}{r}_1-\qc{qmOmega}{\omega} t$: the part $\qc{qmK}{k}\qc{qmR}{r}_1$ is set by the distance from the hole (one more wavelength turns it by $2\pi$) and the part $-\qc{qmOmega}{\omega} t$ turns the arrow in time. Hole~2 gives $\qc{qmCx}{h}_2(t)=\qc{qmA}{A}_2e^{i(\qc{qmK}{k}\qc{qmR}{r}_2-\qc{qmOmega}{\omega} t)}$ and $\qc{qmH}{H}_2(t)=\operatorname{Re}\,\qc{qmCx}{h}_2(t)$.
 
 \paragraph{Step 2: add the complex waves.}
 \[
-h_{12}(t)=h_1(t)+h_2(t).
+\qc{qmCx}{h}_{12}(t)=\qc{qmCx}{h}_1(t)+\qc{qmCx}{h}_2(t).
 \]
 
 \paragraph{Step 3: the real part is the real height.} The real part of a sum is the sum of the real parts, so
 \[
-\operatorname{Re}\,h_{12}(t)=\operatorname{Re}\,h_1(t)+\operatorname{Re}\,h_2(t)=H_1(t)+H_2(t)=H_{12}(t).
+\operatorname{Re}\,\qc{qmCx}{h}_{12}(t)=\operatorname{Re}\,\qc{qmCx}{h}_1(t)+\operatorname{Re}\,\qc{qmCx}{h}_2(t)=\qc{qmH}{H}_1(t)+\qc{qmH}{H}_2(t)=\qc{qmH}{H}_{12}(t).
 \]
 This is the height of the water with both holes open, since the heights add. Adding the arrows and then taking the real part gives the same wave as adding the real waves.
 
-\paragraph{Step 4: separate the part that turns.} Both arrows contain the factor $e^{-i\omega t}$, so
+\paragraph{Step 4: separate the part that turns.} Both arrows contain the factor $e^{-i\qc{qmOmega}{\omega} t}$, so
 \[
-h_{12}(t)=\big(A_1e^{ikr_1}+A_2e^{ikr_2}\big)\,e^{-i\omega t}.
+\qc{qmCx}{h}_{12}(t)=\big(\qc{qmA}{A}_1e^{i\qc{qmK}{k}\qc{qmR}{r}_1}+\qc{qmA}{A}_2e^{i\qc{qmK}{k}\qc{qmR}{r}_2}\big)\,e^{-i\qc{qmOmega}{\omega} t}.
 \]
-The bracket is the sum of the two arrows at $t=0$ (top left of the figure below), placed tip to tail. The factor $e^{-i\omega t}$ turns the whole sum, and the two arrows keep the same angle $\delta=k(r_2-r_1)$ between them, so the \emph{length} of the sum does not change in time.
+The bracket is the sum of the two arrows at $t=0$ (top left of the figure below), placed tip to tail. The factor $e^{-i\qc{qmOmega}{\omega} t}$ turns the whole sum, and the two arrows keep the same angle $\qc{qmPhase}{\delta}=\qc{qmK}{k}(\qc{qmR}{r}_2-\qc{qmR}{r}_1)$ between them, so the \emph{length} of the sum does not change in time.
 
-\paragraph{Step 5: the intensity is the squared length.} For a wave $H=\operatorname{Re}[c\,e^{-i\omega t}]$ the average of $H^2$ over a period is $\tfrac12|c|^2$. The constant $\tfrac12$ is the same for every wave and is dropped, so the intensity is $I=|h|^2$. Since $|e^{-i\omega t}|=1$, the intensity of one hole is $I_1=|h_1|^2=A_1^2$, and with both holes open
+\paragraph{Step 5: the intensity.} What a detector measures is the energy of the wave motion that arrives, and the energy of a wave is proportional to the square of its height (for water, the energy stored in lifting and moving the water grows as the square of the height and of its rate of change). So the intensity is proportional to the \textbf{average of $\qc{qmH}{H}^2$ over a period}: the \emph{real} height, squared. The complex wave gives this average with no extra work. Write the sum of Step 4 as $\qc{qmCx}{h}_{12}(t)=c\,e^{-i\qc{qmOmega}{\omega} t}$, where $c=\qc{qmA}{A}_1e^{i\qc{qmK}{k}\qc{qmR}{r}_1}+\qc{qmA}{A}_2e^{i\qc{qmK}{k}\qc{qmR}{r}_2}$ is the bracket, and write $c=|c|e^{i\alpha}$. Then
 \[
-I_{12}=|h_{12}|^2=\big|A_1e^{ikr_1}+A_2e^{ikr_2}\big|^2=A_1^2+A_2^2+2A_1A_2\cos\delta .
+\qc{qmH}{H}_{12}(t)=\operatorname{Re}\big[\,|c|\,e^{i(\alpha-\qc{qmOmega}{\omega} t)}\big]=|c|\cos(\qc{qmOmega}{\omega} t-\alpha),\qquad
+\langle \qc{qmH}{H}_{12}^2\rangle=|c|^2\,\langle\cos^2(\qc{qmOmega}{\omega} t-\alpha)\rangle=\tfrac12|c|^2,
 \]
-The last step uses $|u+v|^2=|u|^2+|v|^2+2\operatorname{Re}(u^*v)$ with $u^*v=A_1A_2e^{i\delta}$. In terms of the single-hole intensities,
+because the average of $\cos^2$ over a period is $\tfrac12$ whatever the starting phase $\alpha$. Since $|e^{-i\qc{qmOmega}{\omega} t}|=1$, the length of the arrow is $|\qc{qmCx}{h}_{12}(t)|=|c|$ at every time, so
 \[
-I_{12}=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta .
+\langle \qc{qmH}{H}_{12}^2\rangle=\tfrac12\,|\qc{qmCx}{h}_{12}|^2 .
 \]
-The last term is the interference term, and $\delta$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For two waves of equal size, $I_{12}$ is largest, four times the intensity of one wave, where $\delta$ is a multiple of $2\pi$ (the distances differ by whole wavelengths), and zero where $\delta$ is an odd multiple of $\pi$ (the distances differ by an odd number of half-wavelengths). The result is not $I_1+I_2$: the waves \emph{interfere}. For waves of unequal size, or any number of waves, the arrows are simply placed tip to tail, with no extra work.\footnote{The same result in trigonometric form, for two waves of equal size $A$. The heights are $H_1=A\cos(kr_1-\omega t)$ and $H_2=A\cos(kr_2-\omega t)$, and the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives $H_{12}(t)=2A\cos\frac{\delta}{2}\cos\!\big(\frac{k(r_1+r_2)}{2}-\omega t\big)$. This is a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. The arrows give the same: with $A_1=A_2=A$, $I_{12}=2A^2+2A^2\cos\delta=4A^2\cos^2(\delta/2)$. For unequal sizes, or for three or more waves, the identity no longer applies directly and the algebra grows quickly, whereas arrows keep adding.}
+The real height $\qc{qmH}{H}$ is the horizontal part of the arrow and swings between $\pm|\qc{qmCx}{h}|$, while the length $|\qc{qmCx}{h}|$ of the arrow does not change. The factor $\tfrac12$ is the same for every wave, and only ratios of intensities matter, so it is dropped and the intensity is written $I=|\qc{qmCx}{h}|^2$. The intensity of one hole is $I_1=|\qc{qmCx}{h}_1|^2=\qc{qmA}{A}_1^2$, and with both holes open
+\[
+I_{12}=|\qc{qmCx}{h}_{12}|^2=\big|\qc{qmA}{A}_1e^{i\qc{qmK}{k}\qc{qmR}{r}_1}+\qc{qmA}{A}_2e^{i\qc{qmK}{k}\qc{qmR}{r}_2}\big|^2=\qc{qmA}{A}_1^2+\qc{qmA}{A}_2^2+2\qc{qmA}{A}_1\qc{qmA}{A}_2\cos\qc{qmPhase}{\delta} .
+\]
+The last step uses $|u+v|^2=|u|^2+|v|^2+2\operatorname{Re}(u^*v)$ with $u^*v=\qc{qmA}{A}_1\qc{qmA}{A}_2e^{i\qc{qmPhase}{\delta}}$. In terms of the single-hole intensities,
+\[
+I_{12}=I_1+I_2+2\sqrt{I_1I_2}\,\cos\qc{qmPhase}{\delta} .
+\]
+The last term is the interference term, and $\qc{qmPhase}{\delta}$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For two waves of equal size, $I_{12}$ is largest, four times the intensity of one wave, where $\qc{qmPhase}{\delta}$ is a multiple of $2\pi$ (the distances differ by whole wavelengths), and zero where $\qc{qmPhase}{\delta}$ is an odd multiple of $\pi$ (the distances differ by an odd number of half-wavelengths). The result is not $I_1+I_2$: the waves \emph{interfere}. For waves of unequal size, or any number of waves, the arrows are simply placed tip to tail, with no extra work.\footnote{The same result in trigonometric form, for two waves of equal size $\qc{qmA}{A}$. The heights are $\qc{qmH}{H}_1=\qc{qmA}{A}\cos(\qc{qmK}{k}\qc{qmR}{r}_1-\qc{qmOmega}{\omega} t)$ and $\qc{qmH}{H}_2=\qc{qmA}{A}\cos(\qc{qmK}{k}\qc{qmR}{r}_2-\qc{qmOmega}{\omega} t)$, and the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives $\qc{qmH}{H}_{12}(t)=2\qc{qmA}{A}\cos\frac{\qc{qmPhase}{\delta}}{2}\cos\!\big(\frac{\qc{qmK}{k}(\qc{qmR}{r}_1+\qc{qmR}{r}_2)}{2}-\qc{qmOmega}{\omega} t\big)$. This is a wave of the same frequency whose size is $2\qc{qmA}{A}|\cos(\qc{qmPhase}{\delta}/2)|$, so $I_{12}=4\qc{qmA}{A}^2\cos^2(\qc{qmPhase}{\delta}/2)$. The arrows give the same: with $\qc{qmA}{A}_1=\qc{qmA}{A}_2=\qc{qmA}{A}$, $I_{12}=2\qc{qmA}{A}^2+2\qc{qmA}{A}^2\cos\qc{qmPhase}{\delta}=4\qc{qmA}{A}^2\cos^2(\qc{qmPhase}{\delta}/2)$. For unequal sizes, or for three or more waves, the identity no longer applies directly and the algebra grows quickly, whereas arrows keep adding.}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/two-hole-interference.png}
-\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top left: the arrows $h_1$ (red) and $h_2$ (blue) tip to tail, and their sum (black), at $t=0$ and at the detector position marked in the bottom panel. Top right: the real heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$, the intensity if the waves did not interfere.}
+\caption{Two holes $d=4$ apart, $\qc{qmPeriod}{\lambda}=1$, detector line 20 units behind the wall. Top left: the arrows $\qc{qmCx}{h}_1$ (light blue) and $\qc{qmCx}{h}_2$ (darker blue) tip to tail, and their sum (dark navy), at $t=0$ and at the detector position marked in the bottom panel. Top right: the real heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$, the intensity if the waves did not interfere.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -237,9 +266,11 @@ The last term is the interference term, and $\delta$ is the angle between the tw
 
 For classical waves such as water, the height is real and the complex number is only a neat way to add waves: a real cosine would do, with more algebra. For a particle the situation is different, and the complex form is necessary.
 
-\paragraph{Uniform probability.} The amplitude $e^{i(kx-\omega t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(kx-\omega t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time. The complex form avoids both because its length does not change as the arrow turns.
+\paragraph{Uniform probability.} The amplitude $e^{i(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time. The complex form avoids both because its length does not change as the arrow turns.
 
 \paragraph{The quantum rule.} The rule for adding arrows (section~\ref{sec:interference}) holds for these amplitudes as well. If $\phi_1$ and $\phi_2$ are the amplitudes for a particle to arrive at a detector through hole~1 and through hole~2, the probability with both holes open is $|\phi_1+\phi_2|^2$ and not $|\phi_1|^2+|\phi_2|^2$. Here the complex number \emph{is} the amplitude, and its real part alone would not give the right interference.
+
+\paragraph{Why the squared length?} For water, the squared length $|\qc{qmCx}{h}|^2$ was justified by the energy of the wave, which grows as the square of the real height (Step 5 of section~\ref{sec:interference}). For a particle there is no height to square. The rule that the probability is the squared length of the amplitude, $P=|\phi|^2$, is a postulate of quantum mechanics (the Born rule) that experiment confirms. The arithmetic is the same as for water, but the squared length now has a different physical meaning.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% AMPLITUDES
@@ -282,17 +313,17 @@ Two protons share one electron. Write the state as $(a_1,a_2)$, the amplitudes t
 
 The physical content is in two relations,
 \[
-E=\hbar\omega,\qquad p=\hbar k .
+E=\hbar\qc{qmOmega}{\omega},\qquad p=\hbar \qc{qmK}{k} .
 \]
-Energy is the rotation rate in time; momentum is the rotation rate in space. The wavelength is therefore $\lambda=2\pi/k=h/p$ (the de~Broglie relation).
+Energy is the rotation rate in time; momentum is the rotation rate in space. The wavelength is therefore $\qc{qmPeriod}{\lambda}=2\pi/\qc{qmK}{k}=h/p$ (the de~Broglie relation).
 
-\paragraph{Where they come from.} Both have the same origin as the conservation laws. Suppose the physical situation is unchanged by a shift in position, as in empty space. A plane wave $e^{ikx}$ is then a state that a shift only multiplies by a phase, proportional to the size of the shift, whose rate is $k$. A phase factor of this kind cannot change as time passes, so the rate $k$ is conserved: this is the quantum form of conservation of momentum. The same argument for shifts in time gives conservation of energy, with rate $\omega$. The constant $\hbar$ converts these rates to the momentum and energy of classical mechanics, to which they must agree for large systems; its value is fixed by experiment.
+\paragraph{Where they come from.} Both have the same origin as the conservation laws. Suppose the physical situation is unchanged by a shift in position, as in empty space. A plane wave $e^{i\qc{qmK}{k}x}$ is then a state that a shift only multiplies by a phase, proportional to the size of the shift, whose rate is $\qc{qmK}{k}$. A phase factor of this kind cannot change as time passes, so the rate $\qc{qmK}{k}$ is conserved: this is the quantum form of conservation of momentum. The same argument for shifts in time gives conservation of energy, with rate $\qc{qmOmega}{\omega}$. The constant $\hbar$ converts these rates to the momentum and energy of classical mechanics, to which they must agree for large systems; its value is fixed by experiment.
 
-\paragraph{Why one constant serves both.} Relativity requires it: energy and momentum are the time part and space part of one four-vector, and so are frequency and wave number. A particle at rest has the pure time rotation $e^{-iE_0t/\hbar}$. An observer who sees it moving with speed $v$ uses the Lorentz-transformed time $t=\gamma(t'-vx'/c^2)$ and finds $E_0t=E't'-p'x'$ with $E'=\gamma E_0$ and $p'=E'v/c^2$, so the amplitude is $e^{-i(E't'-p'x')/\hbar}$, with $\omega=E'/\hbar$ and $k=p'/\hbar$.
+\paragraph{Why one constant serves both.} Relativity requires it: energy and momentum are the time part and space part of one four-vector, and so are frequency and wave number. A particle at rest has the pure time rotation $e^{-iE_0t/\hbar}$. An observer who sees it moving with speed $v$ uses the Lorentz-transformed time $t=\gamma(t'-vx'/c^2)$ and finds $E_0t=E't'-p'x'$ with $E'=\gamma E_0$ and $p'=E'v/c^2$, so the amplitude is $e^{-i(E't'-p'x')/\hbar}$, with $\qc{qmOmega}{\omega}=E'/\hbar$ and $\qc{qmK}{k}=p'/\hbar$.
 
 \paragraph{Free particle dispersion.} For a slow particle of mass $m$, $E=p^2/2m$, so
 \[
-\omega(k)=\frac{\hbar k^2}{2m}.
+\qc{qmOmega}{\omega}(\qc{qmK}{k})=\frac{\hbar \qc{qmK}{k}^2}{2m}.
 \]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -302,27 +333,27 @@ Energy is the rotation rate in time; momentum is the rotation rate in space. The
 \section{Wave packets: when a lump moves like a particle}
 \label{sec:packets}
 
-A single plane wave has the same probability everywhere, so it cannot describe a particle that is \emph{somewhere}. A localized particle is a superposition of plane waves with wave numbers close to $k_0$:
+A single plane wave has the same probability everywhere, so it cannot describe a particle that is \emph{somewhere}. A localized particle is a superposition of plane waves with wave numbers close to $\qc{qmK}{k}_0$:
 \[
-\psi(x,t)=\sum_k a(k)\,e^{i(kx-\omega(k)t)}.
+\psi(x,t)=\sum_\qc{qmK}{k} a(\qc{qmK}{k})\,e^{i(\qc{qmK}{k}x-\qc{qmOmega}{\omega}(\qc{qmK}{k})t)}.
 \]
-Where the waves are in step their amplitudes add; elsewhere they cancel, leaving a lump. The weights $a(k)$ are \emph{amplitudes} with a common phase (a coherent superposition), not Boltzmann-type probabilities (which would give an incoherent mixture and no lump).
+Where the waves are in step their amplitudes add; elsewhere they cancel, leaving a lump. The weights $a(\qc{qmK}{k})$ are \emph{amplitudes} with a common phase (a coherent superposition), not Boltzmann-type probabilities (which would give an incoherent mixture and no lump).
 
 \subsection{Uncertainty}
 
-Take $a(k)$ to be a bell curve centered on $k_0$ with root-mean-square width $\sigma_k$, all components in phase at $x=0$ when $t=0$. Then $|\psi(x,0)|^2$ is also a bell curve, with width $\sigma_x$, and
+Take $a(\qc{qmK}{k})$ to be a bell curve centered on $\qc{qmK}{k}_0$ with root-mean-square width $\sigma_\qc{qmK}{k}$, all components in phase at $x=0$ when $t=0$. Then $|\psi(x,0)|^2$ is also a bell curve, with width $\sigma_x$, and
 \[
-\sigma_x\sigma_k=\tfrac12,\qquad\text{that is}\qquad \Delta x\,\Delta p=\frac{\hbar}{2},
+\sigma_x\sigma_\qc{qmK}{k}=\tfrac12,\qquad\text{that is}\qquad \Delta x\,\Delta p=\frac{\hbar}{2},
 \]
-with $\Delta x=\sigma_x$ and $\Delta p=\hbar\sigma_k$. This is the uncertainty principle: a property of the state, not a measurement error. The bell curve (Gaussian) is the shape that makes the product as small as possible. A narrow lump in position requires a broad range of $k$, and the reverse.
+with $\Delta x=\sigma_x$ and $\Delta p=\hbar\sigma_\qc{qmK}{k}$. This is the uncertainty principle: a property of the state, not a measurement error. The bell curve (Gaussian) is the shape that makes the product as small as possible. A narrow lump in position requires a broad range of $\qc{qmK}{k}$, and the reverse.
 
 \subsection{The lump moves at the classical velocity}
 
-Expand the rotation rate about $k_0$:
+Expand the rotation rate about $\qc{qmK}{k}_0$:
 \[
-\omega(k)=\omega_0+v\,(k-k_0)+\frac{\hbar}{2m}(k-k_0)^2,\qquad v=\frac{d\omega}{dk}\Big|_{k_0}=\frac{\hbar k_0}{m}=\frac{p_0}{m}.
+\qc{qmOmega}{\omega}(\qc{qmK}{k})=\qc{qmOmega}{\omega}_0+v\,(\qc{qmK}{k}-\qc{qmK}{k}_0)+\frac{\hbar}{2m}(\qc{qmK}{k}-\qc{qmK}{k}_0)^2,\qquad v=\frac{d\qc{qmOmega}{\omega}}{d\qc{qmK}{k}}\Big|_{\qc{qmK}{k}_0}=\frac{\hbar \qc{qmK}{k}_0}{m}=\frac{p_0}{m}.
 \]
-The linear term turns $x$ into $x-vt$ in the sum, so alone it would slide the pattern along unchanged at $v=p_0/m$, the velocity of a classical particle. This lump speed is the \emph{group velocity} $d\omega/dk$, which differs from the crest speed $\omega/k$.
+The linear term turns $x$ into $x-vt$ in the sum, so alone it would slide the pattern along unchanged at $v=p_0/m$, the velocity of a classical particle. This lump speed is the \emph{group velocity} $d\qc{qmOmega}{\omega}/d\qc{qmK}{k}$, which differs from the crest speed $\qc{qmOmega}{\omega}/\qc{qmK}{k}$.
 
 \subsection{The lump spreads}
 
@@ -334,21 +365,21 @@ The quadratic term makes the components fall out of step, and the lump widens. F
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/packet-times.png}
-\caption{A Gaussian packet with $k_0=5$ and $\sigma_x=1.5$ (units with $\hbar=m=1$) at three times. Grey: probability; blue: real part of the amplitude (the individual waves inside the lump); dashed: classical position $x=vt$.}
+\caption{A Gaussian packet with $\qc{qmK}{k}_0=5$ and $\sigma_x=1.5$ (units with $\hbar=m=1$) at three times. Grey: probability; blue: real part of the amplitude (the individual waves inside the lump); dashed: classical position $x=vt$.}
 \end{figure}
 
 \subsection{When is a particle classical?}
 
-A particle behaves classically if it travels far, compared with its own size, before spreading matters. The distance traveled in time $t_s$ is $vt_s=2k_0\sigma_x^2$, so
+A particle behaves classically if it travels far, compared with its own size, before spreading matters. The distance traveled in time $t_s$ is $vt_s=2\qc{qmK}{k}_0\sigma_x^2$, so
 \[
-\frac{vt_s}{\sigma_x}=2k_0\sigma_x,\qquad k_0\sigma_x=\frac{p_0\sigma_x}{\hbar}=\frac{p_0}{2\Delta p}.
+\frac{vt_s}{\sigma_x}=2\qc{qmK}{k}_0\sigma_x,\qquad \qc{qmK}{k}_0\sigma_x=\frac{p_0\sigma_x}{\hbar}=\frac{p_0}{2\Delta p}.
 \]
-The single number $k_0\sigma_x$ is large exactly when the momentum is known to a small fraction of itself. When $k_0\sigma_x\gg1$ the lump contains many wavelengths and travels many widths before spreading, so it follows $x=vt$. When $k_0\sigma_x\sim1$ no path can be spoken of.
+The single number $\qc{qmK}{k}_0\sigma_x$ is large exactly when the momentum is known to a small fraction of itself. When $\qc{qmK}{k}_0\sigma_x\gg1$ the lump contains many wavelengths and travels many widths before spreading, so it follows $x=vt$. When $\qc{qmK}{k}_0\sigma_x\sim1$ no path can be spoken of.
 
 \begin{center}
 \begin{tabular}{llll}
 \hline
-Particle & Localized to & $k_0\sigma_x$ & Spreading time $t_s$ \\
+Particle & Localized to & $\qc{qmK}{k}_0\sigma_x$ & Spreading time $t_s$ \\
 \hline
 Electron, kinetic energy 1~eV & 1~nm & about 5 & about 17~fs \\
 Dust grain, 1~mg at 1~mm/s & 1~$\mu$m & about $10^{19}$ & about $6\times10^{8}$ years \\
@@ -356,7 +387,7 @@ Dust grain, 1~mg at 1~mm/s & 1~$\mu$m & about $10^{19}$ & about $6\times10^{8}$ 
 \end{tabular}
 \end{center}
 
-\paragraph{Numerical note.} A sum over $N$ evenly spaced values of $k$ repeats with period $2\pi/\Delta k$, so a finite sum shows copies of the lump. With Gaussian weights, about 10 components give a clean lump at $t=0$, and roughly $5\sqrt{1+(t/t_s)^2}$ are needed as it spreads; equal weights leave a sidelobe of about 5\% for any $N$. The lump width is set by the bandwidth, never by $N$.
+\paragraph{Numerical note.} A sum over $N$ evenly spaced values of $\qc{qmK}{k}$ repeats with period $2\pi/\Delta \qc{qmK}{k}$, so a finite sum shows copies of the lump. With Gaussian weights, about 10 components give a clean lump at $t=0$, and roughly $5\sqrt{1+(t/t_s)^2}$ are needed as it spreads; equal weights leave a sidelobe of about 5\% for any $N$. The lump width is set by the bandwidth, never by $N$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ROTATIONS
