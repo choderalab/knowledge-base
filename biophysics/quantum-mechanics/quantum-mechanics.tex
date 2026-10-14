@@ -68,7 +68,24 @@ Most of this material was worked out in two interactive notebooks (\texttt{spino
 \section{Waves and interference}
 \label{sec:waves}
 
-Quantum amplitudes behave like waves, so we start with an ordinary wave, such as the height of the surface of water, written with a cosine. It is described in three steps: how it varies in time at one position, how it varies in space at one moment, and then both together.
+Quantum amplitudes behave like waves, so we start with an ordinary wave, such as the height of the surface of water, written with a cosine. Every such wave is built from one function, so we start with that function alone, and then describe the wave in three steps: how it varies in time at one position, how it varies in space at one moment, and then both together.
+
+\subsection{The phase}
+\label{sec:phase}
+
+Consider
+\[
+H(\theta)=A\cos\theta,
+\]
+where $\theta$ is an angle in radians. The angle $\theta$ is called the \textbf{phase}: it says how far through its cycle the cosine has got. At $\theta=0$ the cosine is at a crest ($H=A$), at $\theta=\pi/2$ it crosses zero on the way down, at $\theta=\pi$ it is at a trough ($H=-A$), and at $\theta=2\pi$ it is back at the crest. The cosine therefore repeats whenever the phase grows by $2\pi$. The amplitude $A$ is the largest height; the phase decides where in the cycle the height is. The same value can be pictured as an arrow of length $A$ turning on a circle: the phase is the angle of the arrow and $H$ is its horizontal part. This picture returns in section~\ref{sec:complexwaves}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/wave-phase.png}
+\caption{The cosine against its phase $\theta$ (left) and the same value as the horizontal part of an arrow of length $A$ at angle $\theta$ (right). The black point on the curve and the black segment on the circle show the same height $H(\theta)$.}
+\end{figure}
+
+Everything below is this one function with a particular phase: $\theta=\omega t$ at a fixed position, $\theta=kx$ at a fixed moment, and $\theta=kx-\omega t$ in general.
 
 \subsection{Oscillation in time}
 
@@ -76,7 +93,7 @@ At a fixed position the height oscillates as
 \[
 H(t)=A\cos(\omega t).
 \]
-The \textbf{amplitude} $A$ is the largest height reached. The argument $\omega t$ grows by $\omega$ in every unit of time, so $\omega$ is the number of radians covered per unit time: the \textbf{angular frequency}. The cosine repeats when its argument has grown by $2\pi$, after the \textbf{period} $T=2\pi/\omega$; the number of oscillations per unit time is the frequency $f=1/T=\omega/2\pi$.
+The \textbf{amplitude} $A$ is the largest height reached. The argument of the cosine is now the phase $\theta=\omega t$, which grows by $\omega$ in every unit of time, so $\omega$ is the number of radians covered per unit time: the \textbf{angular frequency}. The cosine repeats when its argument has grown by $2\pi$, after the \textbf{period} $T=2\pi/\omega$; the number of oscillations per unit time is the frequency $f=1/T=\omega/2\pi$.
 
 \begin{figure}[H]
 \centering
@@ -86,7 +103,7 @@ The \textbf{amplitude} $A$ is the largest height reached. The argument $\omega t
 
 \subsection{Variation in space}
 
-At a fixed moment the height varies along the line as $H(x)=A\cos(kx)$. The argument grows by $k$ in every unit of distance, so $k$ is the number of radians per unit length: the \textbf{wave number}, the counterpart in space of $\omega$. The cosine repeats after the \textbf{wavelength} $\lambda=2\pi/k$, the counterpart of the period.
+At a fixed moment the height varies along the line as $H(x)=A\cos(kx)$. The phase is now $\theta=kx$, which grows by $k$ in every unit of distance, so $k$ is the number of radians per unit length: the \textbf{wave number}, the counterpart in space of $\omega$. The cosine repeats after the \textbf{wavelength} $\lambda=2\pi/k$, the counterpart of the period.
 
 \begin{figure}[H]
 \centering
@@ -100,7 +117,7 @@ A wave that varies in both is
 \[
 H(x,t)=A\cos(kx-\omega t).
 \]
-The argument $kx-\omega t$ is the \textbf{phase}. A crest is a point of fixed phase, $kx-\omega t=\text{const}$, so $x=(\omega/k)\,t$ plus a constant, and the whole pattern moves at the \emph{phase velocity}
+The argument $kx-\omega t$ is again the \textbf{phase}, now depending on both position and time. A crest is a point of fixed phase, $kx-\omega t=\text{const}$, so $x=(\omega/k)\,t$ plus a constant, and the whole pattern moves at the \emph{phase velocity}
 \[
 v_{\text{phase}}=\frac{\omega}{k}=\frac{\lambda}{T}.
 \]
@@ -144,7 +161,7 @@ A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizo
 \[
 e^{i\theta}=\cos\theta+i\sin\theta,
 \]
-the arrow of length 1 at angle $\theta$ (in radians): horizontal component $\cos\theta$, vertical component $\sin\theta$. The angle $\theta$ is again called the \emph{phase}.
+the arrow of length 1 at angle $\theta$ (in radians): horizontal component $\cos\theta$, vertical component $\sin\theta$. The angle $\theta$ is the \emph{phase} of section~\ref{sec:phase}.
 
 \subsection{The real wave is the horizontal component of a turning arrow}
 
