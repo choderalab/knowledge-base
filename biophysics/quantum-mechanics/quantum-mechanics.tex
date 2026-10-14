@@ -3,6 +3,7 @@
 \documentclass[english,course]{lecture}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{hyperref}
 
 % Document metadata
@@ -77,9 +78,21 @@ H(t)=A\cos(\omega t).
 \]
 The \textbf{amplitude} $A$ is the largest height reached. The argument $\omega t$ grows by $\omega$ in every unit of time, so $\omega$ is the number of radians covered per unit time: the \textbf{angular frequency}. The cosine repeats when its argument has grown by $2\pi$, after the \textbf{period} $T=2\pi/\omega$; the number of oscillations per unit time is the frequency $f=1/T=\omega/2\pi$.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{figures/wave-time-features.png}
+\caption{Where each quantity appears on the graph of $H(t)=A\cos(\omega t)$. The amplitude $A$ is a height (red). The period $T$ is the horizontal distance between crests. The time $t$ and the height $H(t)$ are the horizontal and vertical positions of a point on the curve. The angular frequency $\omega$ is not a length: it is the rate at which the phase $\omega t$ (top scale) grows, reaching $2\pi$ at $t=T$, so $\omega=2\pi/T$. Lower panel: doubling $\omega$ halves the period.}
+\end{figure}
+
 \subsection{Variation in space}
 
 At a fixed moment the height varies along the line as $H(x)=A\cos(kx)$. The argument grows by $k$ in every unit of distance, so $k$ is the number of radians per unit length: the \textbf{wave number}, the counterpart in space of $\omega$. The cosine repeats after the \textbf{wavelength} $\lambda=2\pi/k$, the counterpart of the period.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{figures/wave-space-features.png}
+\caption{The same graph with position in place of time, for $H(x)=A\cos(kx)$. The wavelength $\lambda$ is a length: the horizontal distance between crests. The wave number $k$ is the rate at which the phase $kx$ (top scale) grows along the line, reaching $2\pi$ at $x=\lambda$, so $k=2\pi/\lambda$. Lower panel: doubling $k$ halves the wavelength.}
+\end{figure}
 
 \subsection{A travelling wave}
 
@@ -92,6 +105,12 @@ The argument $kx-\omega t$ is the \textbf{phase}. A crest is a point of fixed ph
 v_{\text{phase}}=\frac{\omega}{k}=\frac{\lambda}{T}.
 \]
 This form follows from the motion of a source. If a source at $x=0$ moves as $A\cos(\omega t)$ and the disturbance travels outward at speed $v$, the motion at distance $r$ is that of the source a time $r/v$ earlier, $A\cos(\omega t-kr)$ with $k=\omega/v$, which equals $A\cos(kr-\omega t)$. \textbf{The distance from the source enters only through the phase $kr$}, which increases by $2\pi$ for each further wavelength. The speed of the pattern is not the speed of a particle (section~\ref{sec:packets}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/wave-travelling-features.png}
+\caption{Both variables at once, for $H(x,t)=A\cos(kx-\omega t)$. Left: height against position at two times; a crest has moved to the right by $(\omega/k)\,t$. Right: height against time at two fixed positions; the crest reaches the farther position later, after a delay $(k/\omega)\,x$. The space graph and the time graph are two slices of the same wave.}
+\end{figure}
 
 \subsection{Adding two waves: interference}
 \label{sec:interference}
