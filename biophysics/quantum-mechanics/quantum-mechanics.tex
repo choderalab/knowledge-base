@@ -30,7 +30,7 @@
 \subsection*{Recommended reading}
 
 \noindent {\bf The Feynman Lectures on Physics, Vol.~III: Quantum Mechanics}, Feynman, Leighton, and Sands \\
-The source for most of what follows. Chapters 6 (spin one-half), 7 (amplitudes in time), 16 (amplitudes in position), and 17 (symmetry and conservation laws). The online edition is free and uses the same chapter, section, and equation numbers as the printed one.
+The source for most of what follows. Chapters 1 (quantum behavior), 6 (spin one-half), 7 (amplitudes in time), 16 (amplitudes in position), and 17 (symmetry and conservation laws). The online edition is free and uses the same chapter, section, and equation numbers as the printed one.
 \href{https://www.feynmanlectures.caltech.edu/III_toc.html}{[Online edition]}
 
 \subsection*{Optional reading and supportive texts}
@@ -52,7 +52,7 @@ These notes are not a survey of methods. They collect a small set of ideas that 
 
 \begin{itemize}
     \item \textbf{Amplitudes}: the state of a system is a list of complex numbers; probabilities are their squared sizes; phases matter only when amplitudes are combined.
-    \item \textbf{Waves}: a state of definite energy and momentum is a plane wave $e^{i(kx-\omega t)}$, and $E=\hbar\omega$, $p=\hbar k$ say that energy and momentum are its rotation rates in time and in space.
+    \item \textbf{Waves}: waves add by arrows, and a state of definite energy and momentum is a plane wave $e^{i(kx-\omega t)}$, and $E=\hbar\omega$, $p=\hbar k$ say that energy and momentum are its rotation rates in time and in space.
     \item \textbf{Symmetry and conservation}: if the physics is unchanged by a shift or a rotation, the corresponding phase rate is conserved. This is Noether's theorem in quantum form.
     \item \textbf{Spin}: what rotation symmetry says about angular momentum, why the electron has two spin states, and why a rotation through $2\pi$ changes the sign of its state.
     \item \textbf{Fermions and bosons}: which of these facts are consequences of rotation symmetry and which need more (the spin-statistics theorem).
@@ -61,21 +61,124 @@ These notes are not a survey of methods. They collect a small set of ideas that 
 Most of this material was worked out in two interactive notebooks (\texttt{spinor\_rotation.py} and \texttt{plane\_waves\_and\_packets.py}, built with marimo) and is summarized here with the key equations. Units are those of the text unless stated; $\hbar=h/2\pi$ is Planck's constant divided by $2\pi$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% WAVES (TRIGONOMETRIC)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Waves and interference}
+\label{sec:waves}
+
+Quantum amplitudes behave like waves, so we start with an ordinary wave, such as the height of the surface of water, written with a cosine. It is described in three steps: how it varies in time at one position, how it varies in space at one moment, and then both together.
+
+\subsection{Oscillation in time}
+
+At a fixed position the height oscillates as
+\[
+H(t)=A\cos(\omega t).
+\]
+The \textbf{amplitude} $A$ is the largest height reached. The argument $\omega t$ grows by $\omega$ in every unit of time, so $\omega$ is the number of radians covered per unit time: the \textbf{angular frequency}. The cosine repeats when its argument has grown by $2\pi$, after the \textbf{period} $T=2\pi/\omega$; the number of oscillations per unit time is the frequency $f=1/T=\omega/2\pi$.
+
+\subsection{Variation in space}
+
+At a fixed moment the height varies along the line as $H(x)=A\cos(kx)$. The argument grows by $k$ in every unit of distance, so $k$ is the number of radians per unit length: the \textbf{wave number}, the counterpart in space of $\omega$. The cosine repeats after the \textbf{wavelength} $\lambda=2\pi/k$, the counterpart of the period.
+
+\subsection{A travelling wave}
+
+A wave that varies in both is
+\[
+H(x,t)=A\cos(kx-\omega t).
+\]
+The argument $kx-\omega t$ is the \textbf{phase}. A crest is a point of fixed phase, $kx-\omega t=\text{const}$, so $x=(\omega/k)\,t$ plus a constant, and the whole pattern moves at the \emph{phase velocity}
+\[
+v_{\text{phase}}=\frac{\omega}{k}=\frac{\lambda}{T}.
+\]
+This form follows from the motion of a source. If a source at $x=0$ moves as $A\cos(\omega t)$ and the disturbance travels outward at speed $v$, the motion at distance $r$ is that of the source a time $r/v$ earlier, $A\cos(\omega t-kr)$ with $k=\omega/v$, which equals $A\cos(kr-\omega t)$. \textbf{The distance from the source enters only through the phase $kr$}, which increases by $2\pi$ for each further wavelength. The speed of the pattern is not the speed of a particle (section~\ref{sec:packets}).
+
+\subsection{Adding two waves: interference}
+\label{sec:interference}
+
+Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
+
+\paragraph{One hole open.} The height at the detector is $H_1(t)=A_1\cos(kr_1-\omega t)$, with $A_1$ the size of the wave at the detector. The average of $\cos^2$ over a period is $\tfrac12$; dropping that constant, the intensity is $I_1=A_1^2$. Hole~2 gives $H_2(t)=A_2\cos(kr_2-\omega t)$.
+
+\paragraph{Both holes open.} The heights add, $H_{12}=H_1+H_2$. For two waves of equal size $A$, the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives
+\[
+H_{12}(t)=2A\cos\frac{\delta}{2}\,\cos\!\Big(\frac{k(r_1+r_2)}{2}-\omega t\Big),\qquad \delta=k(r_2-r_1),
+\]
+a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. This is four times the single-wave intensity where the path difference is a whole number of wavelengths, and zero where it is an odd number of half-wavelengths. The result is not $I_1+I_2$: the waves \emph{interfere}. For unequal sizes, or more than two waves, the algebra becomes long; the next section avoids it.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/two-hole-heights.png}
+\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top: heights at the detector over two periods. Bottom: intensity along the detector line; the dashed line is $I_1+I_2$, the intensity if the waves did not interfere.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMPLEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The same waves with complex numbers}
+\label{sec:complexwaves}
+
+\subsection{An arrow in the plane}
+
+A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizontal component (real part), $b$ the vertical component (imaginary part). The arrow has a length $|z|$ and points at some angle from the horizontal axis. The numbers used here all have length 1 and are written
+\[
+e^{i\theta}=\cos\theta+i\sin\theta,
+\]
+the arrow of length 1 at angle $\theta$ (in radians): horizontal component $\cos\theta$, vertical component $\sin\theta$. The angle $\theta$ is again called the \emph{phase}.
+
+\subsection{The real wave is the horizontal component of a turning arrow}
+
+Since $\cos\theta=\operatorname{Re}e^{i\theta}$,
+\[
+A\cos(kx-\omega t)=\operatorname{Re}\!\big[A\,e^{i(kx-\omega t)}\big].
+\]
+The right side is an arrow of length $A$ at angle $kx-\omega t$; the wave is its horizontal component, and the vertical component is the same wave a quarter of a period later. A wave with a starting phase, $A\cos(kx-\omega t+\varphi_0)$, is the real part of $a\,e^{i(kx-\omega t)}$ with the \emph{complex amplitude} $a=Ae^{i\varphi_0}$, so one complex number holds both the size and the starting phase. The quantities above now have a geometric meaning.
+
+\paragraph{$\omega$ turns the arrow in time.} At a fixed position the arrow is $e^{-i\omega t}$. Its phase grows in proportion to time, so the arrow turns at a steady rate: \textbf{$\omega$ is the number of radians through which it turns per unit time}, and one turn takes the period $T=2\pi/\omega$. (Some texts write $e^{+i\omega t}$, so the arrow turns the other way; that reverses every phase and changes no intensity.)
+
+\paragraph{$k$ twists the arrow in space.} At a fixed time the arrow at position $x$ is $e^{ikx}$, so neighboring arrows are turned relative to one another: \textbf{$k$ is the number of radians through which the arrow turns per unit length}, and one turn takes the wavelength $\lambda=2\pi/k$.
+
+Together, the arrow at each position turns in time at rate $\omega$ while neighboring positions are turned at rate $k$, and the crests of its horizontal component move at $\omega/k$. \textbf{Nothing has been added to the description: the real wave and the turning arrow are the same wave written in two ways.}
+
+\subsection{Why the waves may be complex}
+
+If the two are the same wave, the complex form must be justified by what it makes possible. There are two reasons: one for water, one for quantum mechanics.
+
+\paragraph{A convenience for classical waves: adding waves.} Return to the two holes. By the identity above,
+\[
+H_1(t)=\operatorname{Re}\!\big[h_1\,e^{-i\omega t}\big],\qquad h_1=A_1e^{ikr_1}.
+\]
+The complex number $h_1$ is an arrow whose length is the size $A_1$ of the wave at the detector and whose direction is the phase $kr_1$, set by the distance from the hole. The factor $e^{-i\omega t}$ turns the arrow and is the same for both holes. The real part of a sum is the sum of the real parts, so
+\[
+H_{12}(t)=\operatorname{Re}\!\big[(h_1+h_2)\,e^{-i\omega t}\big].
+\]
+\textbf{The wave from both holes is described by the sum of the two arrows} placed tip to tail, and its intensity is the squared length of the sum:
+\[
+I_1=|h_1|^2,\qquad I_2=|h_2|^2,\qquad I_{12}=|h_1+h_2|^2=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta .
+\]
+The last term is the interference term, and $\delta=k(r_2-r_1)$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For equal sizes this reproduces the trigonometric result without the identity, and for unequal sizes or any number of waves it needs no extra work.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/two-hole-interference.png}
+\caption{The same experiment with the arrows added. Top left: $h_1$ (red), $h_2$ (blue) tip to tail, and their sum (black), at the detector position marked in the bottom panel. Top right: heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$.}
+\end{figure}
+
+\paragraph{A necessity for quantum amplitudes: uniform probability.} For water the height is real and the complex number is only a convenient way to add waves. For a particle the amplitude $e^{i(kx-\omega t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(kx-\omega t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time. The complex form avoids both because its length does not change as the arrow turns.
+
+\paragraph{The quantum rule.} The rule for adding arrows holds for these amplitudes as well. If $\phi_1$ and $\phi_2$ are the amplitudes for a particle to arrive at a detector through hole~1 and through hole~2, the probability with both holes open is $|\phi_1+\phi_2|^2$ and not $|\phi_1|^2+|\phi_2|^2$. Here the complex number \emph{is} the amplitude, and its real part alone would not give the right interference.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% AMPLITUDES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Amplitudes, probabilities, and phase}
 \label{sec:amplitudes}
 
-\subsection{An amplitude is an arrow}
+\subsection{Probabilities from amplitudes}
 
-A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizontal component (real part), $b$ the vertical component (imaginary part). The arrow has a length $|z|$ and points at some angle from the horizontal axis. The arrows used here all have length 1 and are written
-\[
-e^{i\theta}=\cos\theta+i\sin\theta,
-\]
-the arrow of length 1 at angle $\theta$ (in radians). The angle $\theta$ is the \emph{phase}.
-
-The state of a quantum system is described by one or more such complex numbers, called \emph{amplitudes}. The probability of an outcome is the squared length of its amplitude,
+The state of a quantum system is described by one or more complex numbers, called \emph{amplitudes}. The probability of an outcome is the squared length of its amplitude,
 \[
 P=|a|^2.
 \]
@@ -83,7 +186,7 @@ Writing $a=|a|e^{i\varphi}$, the phase $\varphi$ does not enter $P$. In particul
 
 \subsection{Phases matter when amplitudes are combined}
 
-If a particle can reach a detector by two routes, the amplitudes are added \emph{before} squaring. For two routes of equal weight with amplitudes $a_1=1$ and $a_2=e^{i\varphi}$,
+If a particle can reach a detector by two routes, the amplitudes are added \emph{before} squaring (section~\ref{sec:complexwaves}). For two routes of equal weight with amplitudes $a_1=1$ and $a_2=e^{i\varphi}$,
 \[
 P=\left|\frac{a_1+a_2}{2}\right|^2=\cos^2\!\left(\frac{\varphi}{2}\right).
 \]
@@ -98,78 +201,12 @@ Multiplying \emph{all} amplitudes of a state by the same phase changes no probab
 Two protons share one electron. Write the state as $(a_1,a_2)$, the amplitudes to find the electron near proton 1 or proton 2. Reflecting the system in the plane halfway between the protons turns $(a_1,a_2)$ into $(a_2,a_1)$. The state $\tfrac{1}{\sqrt2}(1,1)$ is unchanged; the state $\tfrac{1}{\sqrt2}(1,-1)$ becomes $\tfrac{1}{\sqrt2}(-1,1)$, which is minus itself. All probabilities are the same before and after, yet the second state has had its sign reversed. Two reflections restore any state, so a reflection can multiply a state only by $+1$ or $-1$. The same argument returns for the exchange of identical particles (section~\ref{sec:statistics}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PLANE WAVES
+%% ENERGY AND MOMENTUM
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Plane waves: energy and momentum as rotation rates}
+\section{Energy and momentum are these rates}
 \label{sec:planewaves}
 
-\subsection{Rotation in time: $\omega$}
-
-A particle of definite energy, observed at one fixed position, has the amplitude
-\[
-e^{-i\omega t}.
-\]
-The phase $-\omega t$ grows in proportion to time, so the arrow turns at a steady rate. \textbf{$\omega$ is the number of radians per unit time through which the arrow turns.} The period is $T=2\pi/\omega$.
-
-\subsection{Rotation in space: $k$}
-
-A state of definite momentum has the amplitude $e^{ikx}$ at position $x$. \textbf{$k$ is the number of radians per unit distance through which the arrow turns} as one moves along the line, the spatial counterpart of $\omega$. The wavelength is $\lambda=2\pi/k$.
-
-\subsection{A wave that moves}
-
-Combining the two,
-\[
-e^{i(kx-\omega t)},
-\]
-in which the arrow at each position turns in time at rate $\omega$ while neighboring positions are turned relative to one another at rate $k$. A point of fixed phase satisfies $kx-\omega t=\text{const}$, so the pattern moves at the \emph{phase velocity}
-\[
-v_{\text{phase}}=\frac{\omega}{k}.
-\]
-This is the speed of the crests, not yet the speed of the particle (section~\ref{sec:packets}).
-
-\subsection{Why the amplitude must be complex}
-
-The amplitude $e^{i(kx-\omega t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(kx-\omega t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time.
-
-\subsection{Adding two waves: interference}
-\label{sec:interference}
-
-The arrows earn their keep when two waves are added. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height of the water. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
-
-\paragraph{In trigonometric form.} The height at the detector from hole~1 is
-\[
-H_1(t)=A_1\cos(kr_1-\omega t),
-\]
-with $A_1$ the size of the wave at the detector. Distance enters only through the phase $kr_1$: one more wavelength shifts it by $2\pi$. The average of $\cos^2$ over a period is $\tfrac12$; dropping that constant, the intensity is $I_1=A_1^2$. With both holes open the heights add, $H_{12}=H_1+H_2$. For two waves of equal size $A$, the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives
-\[
-H_{12}(t)=2A\cos\frac{\delta}{2}\,\cos\!\Big(\frac{k(r_1+r_2)}{2}-\omega t\Big),\qquad \delta=k(r_2-r_1),
-\]
-a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. This is four times the single-wave intensity where the path difference is a whole number of wavelengths, and zero where it is an odd number of half-wavelengths. The result is not $I_1+I_2$.
-
-\paragraph{With complex numbers.} Since $\cos\theta=\operatorname{Re}e^{i\theta}$,
-\[
-H_1(t)=\operatorname{Re}\!\big[h_1\,e^{-i\omega t}\big],\qquad h_1=A_1e^{ikr_1}.
-\]
-The complex number $h_1$ is an arrow as in section~\ref{sec:amplitudes}: its length is the size $A_1$ of the wave at the detector and its direction is the phase $kr_1$, set by the distance from the hole. The factor $e^{-i\omega t}$ turns the arrow at rate $\omega$ and is the same for both holes. (Some texts write $e^{+i\omega t}$; that reverses every phase and changes no intensity.) The real part of a sum is the sum of the real parts, so
-\[
-H_{12}(t)=\operatorname{Re}\!\big[(h_1+h_2)\,e^{-i\omega t}\big].
-\]
-\textbf{The wave from both holes is described by the sum of the two arrows} placed tip to tail, and its intensity is the squared length of the sum:
-\[
-I_1=|h_1|^2,\qquad I_2=|h_2|^2,\qquad I_{12}=|h_1+h_2|^2=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta .
-\]
-The last term is the interference term, and $\delta=k(r_2-r_1)$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For equal sizes this reproduces the trigonometric result without the identity, and for unequal sizes it needs no extra work.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\textwidth]{figures/two-hole-interference.png}
-\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top left: the arrows $h_1$ (red), $h_2$ (blue) and their sum (black) at the detector position marked in the bottom panel. Top right: the heights over two periods. Bottom: intensity along the detector line; the dashed line is $I_1+I_2$.}
-\end{figure}
-
-\paragraph{The quantum rule.} The same rule governs quantum amplitudes. If $\phi_1$ and $\phi_2$ are the amplitudes for a particle to arrive at a detector through hole~1 and through hole~2, the probability with both holes open is $|\phi_1+\phi_2|^2$ and not $|\phi_1|^2+|\phi_2|^2$. This is the two-route rule of section~\ref{sec:amplitudes}. The difference from water is the role of the complex number: for water the height is real and the complex number is a convenient way to add waves; for the particle the complex number \emph{is} the amplitude, and its real part alone would not give the right interference.
-
-\subsection{Energy and momentum}
 
 The physical content is in two relations,
 \[
