@@ -65,7 +65,7 @@ Most of this material was worked out in two interactive notebooks (\texttt{spino
 %% WAVES (TRIGONOMETRIC)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Waves and interference}
+\section{Waves in trigonometric form}
 \label{sec:waves}
 
 Quantum amplitudes behave like waves, so we start with an ordinary wave, such as the height of the surface of water, written with a cosine. Every such wave is built from one function, so we start with that function alone, and then describe the wave in three steps: how it varies in time at one position, how it varies in space at one moment, and then both together.
@@ -135,31 +135,14 @@ This form follows from the motion of a source. If a source at $x=0$ moves as $A\
 \caption{The whole wave as a surface, $H(x,t)=A\cos(kx-\omega t)$ with $A=1.5$, $k=1.5$, $\omega=2$. The black curve is the slice $t=0$ (the space graph) and the green curve is the slice $x=0$ (the time graph). The ridges are the crests; they run diagonally because a crest moves along $x$ as $t$ advances, at speed $\omega/k$. Changing $A$ changes the height of the ridges, $k$ their spacing along $x$, and $\omega$ their spacing along $t$.}
 \end{figure}
 
-\subsection{Adding two waves: interference}
-\label{sec:interference}
-
-Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
-
-\paragraph{One hole open.} The height at the detector is $H_1(t)=A_1\cos(kr_1-\omega t)$, with $A_1$ the size of the wave at the detector. The average of $\cos^2$ over a period is $\tfrac12$; dropping that constant, the intensity is $I_1=A_1^2$. Hole~2 gives $H_2(t)=A_2\cos(kr_2-\omega t)$.
-
-\paragraph{Both holes open.} The heights add, $H_{12}=H_1+H_2$. For two waves of equal size $A$, the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives
-\[
-H_{12}(t)=2A\cos\frac{\delta}{2}\,\cos\!\Big(\frac{k(r_1+r_2)}{2}-\omega t\Big),\qquad \delta=k(r_2-r_1),
-\]
-a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. This is four times the single-wave intensity where the path difference is a whole number of wavelengths, and zero where it is an odd number of half-wavelengths. The result is not $I_1+I_2$: the waves \emph{interfere}. For unequal sizes, or more than two waves, the algebra becomes long; the next section avoids it.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.95\textwidth]{figures/two-hole-heights.png}
-\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top: heights at the detector over two periods. Bottom: intensity along the detector line; the dashed line is $I_1+I_2$, the intensity if the waves did not interfere.}
-\end{figure}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% COMPLEX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{The same waves with complex numbers}
 \label{sec:complexwaves}
+
+For classical waves such as water, writing the wave with complex numbers is a neat mathematical trick. For quantum amplitudes it becomes necessary (section~\ref{sec:whycomplex}). This section shows that the two descriptions are the same wave.
 
 \subsection{An arrow in the plane}
 
@@ -183,33 +166,49 @@ The right side is an arrow of length $A$ at angle $kx-\omega t$; the wave is its
 
 Together, the arrow at each position turns in time at rate $\omega$ while neighboring positions are turned at rate $k$, and the crests of its horizontal component move at $\omega/k$. \textbf{Nothing has been added to the description: the real wave and the turning arrow are the same wave written in two ways.}
 
-\subsection{Why the waves may be complex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INTERFERENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-If the two are the same wave, the complex form must be justified by what it makes possible. There are two reasons: one for water, one for quantum mechanics.
+\section{Adding waves: interference}
+\label{sec:interference}
 
-\paragraph{A convenience for classical waves: adding waves.} Return to the two holes. By the identity above,
+Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
+
+\paragraph{One hole open.} The height at the detector is $H_1(t)=A_1\cos(kr_1-\omega t)$, with $A_1$ the size of the wave at the detector. By section~\ref{sec:complexwaves} this is the real part of an arrow,
 \[
-H_1(t)=\operatorname{Re}\!\big[h_1\,e^{-i\omega t}\big],\qquad h_1=A_1e^{ikr_1}.
+H_1(t)=\operatorname{Re}\!\big[A_1e^{i(kr_1-\omega t)}\big]=\operatorname{Re}\!\big[h_1\,e^{-i\omega t}\big],\qquad h_1=A_1e^{ikr_1}.
 \]
-The complex number $h_1$ is an arrow whose length is the size $A_1$ of the wave at the detector and whose direction is the phase $kr_1$, set by the distance from the hole. The factor $e^{-i\omega t}$ turns the arrow and is the same for both holes. The real part of a sum is the sum of the real parts, so
+The complex number $h_1$ is an arrow whose length is the size $A_1$ of the wave at the detector and whose direction is the phase $kr_1$, set by the distance from the hole: one more wavelength turns it by $2\pi$. The factor $e^{-i\omega t}$ turns the arrow and is the same for both holes. The average of $H_1^2$ over a period is $\tfrac12A_1^2$; dropping the constant $\tfrac12$, the intensity is $I_1=|h_1|^2$. Hole~2 gives $h_2=A_2e^{ikr_2}$ and $I_2=|h_2|^2$.
+
+\paragraph{Both holes open.} The heights add, $H_{12}=H_1+H_2$. The real part of a sum is the sum of the real parts, so
 \[
 H_{12}(t)=\operatorname{Re}\!\big[(h_1+h_2)\,e^{-i\omega t}\big].
 \]
 \textbf{The wave from both holes is described by the sum of the two arrows} placed tip to tail, and its intensity is the squared length of the sum:
 \[
-I_1=|h_1|^2,\qquad I_2=|h_2|^2,\qquad I_{12}=|h_1+h_2|^2=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta .
+I_{12}=|h_1+h_2|^2=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta,\qquad \delta=k(r_2-r_1).
 \]
-The last term is the interference term, and $\delta=k(r_2-r_1)$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For equal sizes this reproduces the trigonometric result without the identity, and for unequal sizes or any number of waves it needs no extra work.
+The last term is the interference term, and $\delta$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For two waves of equal size, $I_{12}$ is largest, four times the intensity of one wave, where $\delta$ is a multiple of $2\pi$ (the distances differ by whole wavelengths), and zero where $\delta$ is an odd multiple of $\pi$ (the distances differ by an odd number of half-wavelengths). The result is not $I_1+I_2$: the waves \emph{interfere}. For waves of unequal size, or any number of waves, the arrows are simply placed tip to tail, with no extra work.\footnote{The same result in trigonometric form, for two waves of equal size $A$. The heights are $H_1=A\cos(kr_1-\omega t)$ and $H_2=A\cos(kr_2-\omega t)$, and the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives $H_{12}(t)=2A\cos\frac{\delta}{2}\cos\!\big(\frac{k(r_1+r_2)}{2}-\omega t\big)$. This is a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. The arrows give the same: with $|h_1|=|h_2|=A$, $I_{12}=2A^2+2A^2\cos\delta=4A^2\cos^2(\delta/2)$. For unequal sizes, or for three or more waves, the identity no longer applies directly and the algebra grows quickly, whereas arrows keep adding.}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/two-hole-interference.png}
-\caption{The same experiment with the arrows added. Top left: $h_1$ (red), $h_2$ (blue) tip to tail, and their sum (black), at the detector position marked in the bottom panel. Top right: heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$.}
+\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top left: $h_1$ (red), $h_2$ (blue) tip to tail, and their sum (black), at the detector position marked in the bottom panel. Top right: heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$, the intensity if the waves did not interfere.}
 \end{figure}
 
-\paragraph{A necessity for quantum amplitudes: uniform probability.} For water the height is real and the complex number is only a convenient way to add waves. For a particle the amplitude $e^{i(kx-\omega t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(kx-\omega t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time. The complex form avoids both because its length does not change as the arrow turns.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% WHY COMPLEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\paragraph{The quantum rule.} The rule for adding arrows holds for these amplitudes as well. If $\phi_1$ and $\phi_2$ are the amplitudes for a particle to arrive at a detector through hole~1 and through hole~2, the probability with both holes open is $|\phi_1+\phi_2|^2$ and not $|\phi_1|^2+|\phi_2|^2$. Here the complex number \emph{is} the amplitude, and its real part alone would not give the right interference.
+\section{Why the waves must be complex for quantum amplitudes}
+\label{sec:whycomplex}
+
+For classical waves such as water, the height is real and the complex number is only a neat way to add waves: a real cosine would do, with more algebra. For a particle the situation is different, and the complex form is necessary.
+
+\paragraph{Uniform probability.} The amplitude $e^{i(kx-\omega t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(kx-\omega t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time. The complex form avoids both because its length does not change as the arrow turns.
+
+\paragraph{The quantum rule.} The rule for adding arrows (section~\ref{sec:interference}) holds for these amplitudes as well. If $\phi_1$ and $\phi_2$ are the amplitudes for a particle to arrive at a detector through hole~1 and through hole~2, the probability with both holes open is $|\phi_1+\phi_2|^2$ and not $|\phi_1|^2+|\phi_2|^2$. Here the complex number \emph{is} the amplitude, and its real part alone would not give the right interference.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% AMPLITUDES
@@ -228,7 +227,7 @@ Writing $a=|a|e^{i\varphi}$, the phase $\varphi$ does not enter $P$. In particul
 
 \subsection{Phases matter when amplitudes are combined}
 
-If a particle can reach a detector by two routes, the amplitudes are added \emph{before} squaring (section~\ref{sec:complexwaves}). For two routes of equal weight with amplitudes $a_1=1$ and $a_2=e^{i\varphi}$,
+If a particle can reach a detector by two routes, the amplitudes are added \emph{before} squaring (section~\ref{sec:interference}). For two routes of equal weight with amplitudes $a_1=1$ and $a_2=e^{i\varphi}$,
 \[
 P=\left|\frac{a_1+a_2}{2}\right|^2=\cos^2\!\left(\frac{\varphi}{2}\right).
 \]
