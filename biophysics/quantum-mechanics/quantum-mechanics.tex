@@ -132,6 +132,43 @@ This is the speed of the crests, not yet the speed of the particle (section~\ref
 
 The amplitude $e^{i(kx-\omega t)}$ has length 1 everywhere and at all times, so the probability of finding the particle is uniform and constant. This is the correct description of a state of definite energy and momentum: the momentum is exactly known, so the position is completely undetermined. A real wave such as $\cos(kx-\omega t)$ would not do, because its square has nodes (positions of zero probability) and oscillates in time.
 
+\subsection{Adding two waves: interference}
+\label{sec:interference}
+
+The arrows earn their keep when two waves are added. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height of the water. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
+
+\paragraph{In trigonometric form.} The height at the detector from hole~1 is
+\[
+H_1(t)=A_1\cos(kr_1-\omega t),
+\]
+with $A_1$ the size of the wave at the detector. Distance enters only through the phase $kr_1$: one more wavelength shifts it by $2\pi$. The average of $\cos^2$ over a period is $\tfrac12$; dropping that constant, the intensity is $I_1=A_1^2$. With both holes open the heights add, $H_{12}=H_1+H_2$. For two waves of equal size $A$, the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives
+\[
+H_{12}(t)=2A\cos\frac{\delta}{2}\,\cos\!\Big(\frac{k(r_1+r_2)}{2}-\omega t\Big),\qquad \delta=k(r_2-r_1),
+\]
+a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. This is four times the single-wave intensity where the path difference is a whole number of wavelengths, and zero where it is an odd number of half-wavelengths. The result is not $I_1+I_2$.
+
+\paragraph{With complex numbers.} Since $\cos\theta=\operatorname{Re}e^{i\theta}$,
+\[
+H_1(t)=\operatorname{Re}\!\big[h_1\,e^{-i\omega t}\big],\qquad h_1=A_1e^{ikr_1}.
+\]
+The complex number $h_1$ is an arrow as in section~\ref{sec:amplitudes}: its length is the size $A_1$ of the wave at the detector and its direction is the phase $kr_1$, set by the distance from the hole. The factor $e^{-i\omega t}$ turns the arrow at rate $\omega$ and is the same for both holes. (Some texts write $e^{+i\omega t}$; that reverses every phase and changes no intensity.) The real part of a sum is the sum of the real parts, so
+\[
+H_{12}(t)=\operatorname{Re}\!\big[(h_1+h_2)\,e^{-i\omega t}\big].
+\]
+\textbf{The wave from both holes is described by the sum of the two arrows} placed tip to tail, and its intensity is the squared length of the sum:
+\[
+I_1=|h_1|^2,\qquad I_2=|h_2|^2,\qquad I_{12}=|h_1+h_2|^2=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta .
+\]
+The last term is the interference term, and $\delta=k(r_2-r_1)$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For equal sizes this reproduces the trigonometric result without the identity, and for unequal sizes it needs no extra work.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/two-hole-interference.png}
+\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top left: the arrows $h_1$ (red), $h_2$ (blue) and their sum (black) at the detector position marked in the bottom panel. Top right: the heights over two periods. Bottom: intensity along the detector line; the dashed line is $I_1+I_2$.}
+\end{figure}
+
+\paragraph{The quantum rule.} The same rule governs quantum amplitudes. If $\phi_1$ and $\phi_2$ are the amplitudes for a particle to arrive at a detector through hole~1 and through hole~2, the probability with both holes open is $|\phi_1+\phi_2|^2$ and not $|\phi_1|^2+|\phi_2|^2$. This is the two-route rule of section~\ref{sec:amplitudes}. The difference from water is the role of the complex number: for water the height is real and the complex number is a convenient way to add waves; for the particle the complex number \emph{is} the amplitude, and its real part alone would not give the right interference.
+
 \subsection{Energy and momentum}
 
 The physical content is in two relations,
