@@ -232,7 +232,7 @@ This is the height of the water with both holes open, since the heights add. Add
 \]
 The bracket is the sum of the two arrows at $t=0$ (top left of the figure below), placed tip to tail. The factor $e^{-i\qc{qmOmega}{\omega} t}$ turns the whole sum, and the two arrows keep the same angle $\qc{qmPhase}{\delta}=\qc{qmK}{k}(\qc{qmR}{r}_2-\qc{qmR}{r}_1)$ between them, so the \emph{length} of the sum does not change in time.
 
-\paragraph{Step 5: the intensity.} What a detector measures is the energy of the wave motion that arrives, and the energy of a wave is proportional to the square of its height (for water, the energy stored in lifting and moving the water grows as the square of the height and of its rate of change). So the intensity is proportional to the \textbf{average of $\qc{qmH}{H}^2$ over a period}: the \emph{real} height, squared. The complex wave gives this average with no extra work. Write the sum of Step 4 as $\qc{qmCx}{h}_{12}(t)=c\,e^{-i\qc{qmOmega}{\omega} t}$, where $c=\qc{qmA}{A}_1e^{i\qc{qmK}{k}\qc{qmR}{r}_1}+\qc{qmA}{A}_2e^{i\qc{qmK}{k}\qc{qmR}{r}_2}$ is the bracket, and write $c=|c|e^{i\alpha}$. Then
+\paragraph{Step 5: the intensity.} What a detector measures is the energy of the wave motion that arrives, and the energy of a wave is proportional to the square of its height (section~\ref{sec:oscillator} derives this from the energy of a harmonic oscillator). So the intensity is proportional to the \textbf{average of $\qc{qmH}{H}^2$ over a period}: the \emph{real} height, squared. The complex wave gives this average with no extra work. Write the sum of Step 4 as $\qc{qmCx}{h}_{12}(t)=c\,e^{-i\qc{qmOmega}{\omega} t}$, where $c=\qc{qmA}{A}_1e^{i\qc{qmK}{k}\qc{qmR}{r}_1}+\qc{qmA}{A}_2e^{i\qc{qmK}{k}\qc{qmR}{r}_2}$ is the bracket, and write $c=|c|e^{i\alpha}$. Then
 \[
 \qc{qmH}{H}_{12}(t)=\operatorname{Re}\big[\,|c|\,e^{i(\alpha-\qc{qmOmega}{\omega} t)}\big]=|c|\cos(\qc{qmOmega}{\omega} t-\alpha),\qquad
 \langle \qc{qmH}{H}_{12}^2\rangle=|c|^2\,\langle\cos^2(\qc{qmOmega}{\omega} t-\alpha)\rangle=\tfrac12|c|^2,
@@ -255,6 +255,35 @@ The last term is the interference term, and $\qc{qmPhase}{\delta}$ is the angle 
 \centering
 \includegraphics[width=\textwidth]{figures/two-hole-interference.png}
 \caption{Two holes $d=4$ apart, $\qc{qmPeriod}{\lambda}=1$, detector line 20 units behind the wall. Top left: the arrows $\qc{qmCx}{h}_1$ (light blue) and $\qc{qmCx}{h}_2$ (darker blue) tip to tail, and their sum (dark navy), at $t=0$ and at the detector position marked in the bottom panel. Top right: the real heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$, the intensity if the waves did not interfere.}
+\end{figure}
+
+\subsection{Why the energy goes as the height squared}
+\label{sec:oscillator}
+
+The intensity of Step~5 rests on one fact: the energy of a wave is proportional to the square of its height. It follows from the energy of a harmonic oscillator. A small piece of water at the detector, of mass $m$, moves up and down under a restoring force $-\kappa \qc{qmH}{H}$ from the water around it. Its height obeys $m\qc{qmH}{\ddot H}=-\kappa \qc{qmH}{H}$, with the solution
+\[
+\qc{qmH}{H}(t)=\qc{qmA}{A}\cos(\qc{qmOmega}{\omega} t),\qquad \qc{qmOmega}{\omega}^2=\kappa/m .
+\]
+Its potential and kinetic energies are
+\[
+E_{\text{pot}}=\tfrac12\kappa \qc{qmH}{H}^2=\tfrac12 m\qc{qmOmega}{\omega}^2\qc{qmA}{A}^2\cos^2(\qc{qmOmega}{\omega} t),\qquad
+E_{\text{kin}}=\tfrac12 m\qc{qmH}{\dot H}^2=\tfrac12 m\qc{qmOmega}{\omega}^2\qc{qmA}{A}^2\sin^2(\qc{qmOmega}{\omega} t),
+\]
+and their sum is
+\[
+E=E_{\text{pot}}+E_{\text{kin}}=\tfrac12 m\qc{qmOmega}{\omega}^2\qc{qmA}{A}^2 .
+\]
+The total does not depend on time: the energy passes back and forth between the two forms while the sum stays fixed (figure). Two things follow.
+\begin{itemize}
+    \item For a given $m$ and $\qc{qmOmega}{\omega}$, the energy is proportional to $\qc{qmA}{A}^2$: twice the height, four times the energy.
+    \item The average of $\qc{qmH}{H}^2$ over a period is $\tfrac12\qc{qmA}{A}^2$, so the energy can be written $E=m\qc{qmOmega}{\omega}^2\langle \qc{qmH}{H}^2\rangle$. The energy is proportional to the \textbf{average of the real height squared}.
+\end{itemize}
+A wave is a set of such oscillators, so the energy it delivers to the detector in each second, its intensity, is proportional to $\langle \qc{qmH}{H}^2\rangle$ for waves of the same frequency in the same medium. This is the relation used in Step~5. For the two holes the water at the detector oscillates with amplitude $|c|$, so its energy is proportional to $|c|^2=|\qc{qmCx}{h}_{12}|^2$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/oscillator-energy.png}
+\caption{A harmonic oscillator with $\qc{qmH}{H}(t)=\qc{qmA}{A}\cos(\qc{qmOmega}{\omega} t)$. Top: the height. Bottom: the potential energy (light green) and the kinetic energy (teal) trade off, and their sum (dashed) is constant, $\tfrac12 m\qc{qmOmega}{\omega}^2\qc{qmA}{A}^2$. Each averages to half of the total.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
