@@ -146,23 +146,35 @@ For classical waves such as water, writing the wave with complex numbers is a ne
 
 \subsection{An arrow in the plane}
 
-A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizontal component (real part), $b$ the vertical component (imaginary part). The arrow has a length $|z|$ and points at some angle from the horizontal axis. The numbers used here all have length 1 and are written
+A complex number $z=a+ib$ can be drawn as an arrow in a plane: $a$ is the horizontal component (real part), $b$ the vertical component (imaginary part). The arrow has a length $|z|$ and points at some angle from the horizontal axis. The arrow of length 1 at angle $\theta$ (in radians) is written
 \[
 e^{i\theta}=\cos\theta+i\sin\theta,
 \]
-the arrow of length 1 at angle $\theta$ (in radians): horizontal component $\cos\theta$, vertical component $\sin\theta$. The angle $\theta$ is the \emph{phase} of section~\ref{sec:phase}.
+with horizontal component $\cos\theta$ and vertical component $\sin\theta$. An arrow of length $A$ at the same angle is $A$ times this,
+\[
+h(\theta)=A\,e^{i\theta}=A\cos\theta+iA\sin\theta .
+\]
+This is the arrow in the right panel of the figure in section~\ref{sec:phase}, and the angle $\theta$ is the \emph{phase} of that section. Its horizontal component is the cosine of section~\ref{sec:phase},
+\[
+H(\theta)=A\cos\theta=\operatorname{Re}\,h(\theta),
+\]
+where $\operatorname{Re}$ means the real part. A notation is fixed here and used from now on: the capital $H$ is the \textbf{real height} of the wave, and the lowercase $h$ is the \textbf{complex} number, the arrow, whose real part is $H$.
 
 \subsection{The real wave is the horizontal component of a turning arrow}
 
-Since $\cos\theta=\operatorname{Re}e^{i\theta}$,
+Now replace the phase $\theta$ by the phase of section~\ref{sec:waves}, $\theta=kx-\omega t$. The \textbf{complex wave} is
 \[
-A\cos(kx-\omega t)=\operatorname{Re}\!\big[A\,e^{i(kx-\omega t)}\big].
+h(x,t)=A\,e^{i(kx-\omega t)},
 \]
-The right side is an arrow of length $A$ at angle $kx-\omega t$; the wave is its horizontal component, and the vertical component is the same wave a quarter of a period later. A wave with a starting phase, $A\cos(kx-\omega t+\varphi_0)$, is the real part of $a\,e^{i(kx-\omega t)}$ with the \emph{complex amplitude} $a=Ae^{i\varphi_0}$, so one complex number holds both the size and the starting phase. The quantities above now have a geometric meaning.
+and its real part is the wave of section~\ref{sec:waves},
+\[
+H(x,t)=\operatorname{Re}\,h(x,t)=A\cos(kx-\omega t).
+\]
+These are equal for every $x$ and $t$: $H$ is the real wave, and $h$ is the arrow of length $A$ at angle $kx-\omega t$ of which $H$ is the horizontal component. The vertical component is $A\sin(kx-\omega t)$, the same wave a quarter of a period later. A wave with a starting phase, $A\cos(kx-\omega t+\varphi_0)$, is the real part of $h=a\,e^{i(kx-\omega t)}$ with the \emph{complex amplitude} $a=Ae^{i\varphi_0}$, so one complex number holds both the size and the starting phase. The quantities above now have a geometric meaning.
 
-\paragraph{$\omega$ turns the arrow in time.} At a fixed position the arrow is $e^{-i\omega t}$. Its phase grows in proportion to time, so the arrow turns at a steady rate: \textbf{$\omega$ is the number of radians through which it turns per unit time}, and one turn takes the period $T=2\pi/\omega$. (Some texts write $e^{+i\omega t}$, so the arrow turns the other way; that reverses every phase and changes no intensity.)
+\paragraph{$\omega$ turns the arrow in time.} At a fixed position the arrow is $h(t)=\big(Ae^{ikx}\big)e^{-i\omega t}$. The bracket does not change with time and the phase $-\omega t$ of the second factor grows in proportion to time, so the arrow turns at a steady rate: \textbf{$\omega$ is the number of radians through which it turns per unit time}, and one turn takes the period $T=2\pi/\omega$. (Some texts write $e^{+i\omega t}$, so the arrow turns the other way; that reverses every phase and changes no intensity.)
 
-\paragraph{$k$ twists the arrow in space.} At a fixed time the arrow at position $x$ is $e^{ikx}$, so neighboring arrows are turned relative to one another: \textbf{$k$ is the number of radians through which the arrow turns per unit length}, and one turn takes the wavelength $\lambda=2\pi/k$.
+\paragraph{$k$ twists the arrow in space.} At a fixed time the arrow at position $x$ is $h(x)=\big(Ae^{-i\omega t}\big)e^{ikx}$, so neighboring arrows are turned relative to one another: \textbf{$k$ is the number of radians through which the arrow turns per unit length}, and one turn takes the wavelength $\lambda=2\pi/k$.
 
 Together, the arrow at each position turns in time at rate $\omega$ while neighboring positions are turned at rate $k$, and the crests of its horizontal component move at $\omega/k$. \textbf{Nothing has been added to the description: the real wave and the turning arrow are the same wave written in two ways.}
 
@@ -175,26 +187,45 @@ Together, the arrow at each position turns in time at rate $\omega$ while neighb
 
 Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
 
-\paragraph{One hole open.} The height at the detector is $H_1(t)=A_1\cos(kr_1-\omega t)$, with $A_1$ the size of the wave at the detector. By section~\ref{sec:complexwaves} this is the real part of an arrow,
-\[
-H_1(t)=\operatorname{Re}\!\big[A_1e^{i(kr_1-\omega t)}\big]=\operatorname{Re}\!\big[h_1\,e^{-i\omega t}\big],\qquad h_1=A_1e^{ikr_1}.
-\]
-The complex number $h_1$ is an arrow whose length is the size $A_1$ of the wave at the detector and whose direction is the phase $kr_1$, set by the distance from the hole: one more wavelength turns it by $2\pi$. The factor $e^{-i\omega t}$ turns the arrow and is the same for both holes. The average of $H_1^2$ over a period is $\tfrac12A_1^2$; dropping the constant $\tfrac12$, the intensity is $I_1=|h_1|^2$. Hole~2 gives $h_2=A_2e^{ikr_2}$ and $I_2=|h_2|^2$.
+The calculation goes in steps, from the complex waves to the real height.
 
-\paragraph{Both holes open.} The heights add, $H_{12}=H_1+H_2$. The real part of a sum is the sum of the real parts, so
+\paragraph{Step 1: one complex wave for each hole.} By section~\ref{sec:waves} the real height at the detector from hole~1 is $H_1(t)=A_1\cos(kr_1-\omega t)$, with $A_1$ the size of the wave at the detector. Its complex wave, in the notation of section~\ref{sec:complexwaves}, is
 \[
-H_{12}(t)=\operatorname{Re}\!\big[(h_1+h_2)\,e^{-i\omega t}\big].
+h_1(t)=A_1e^{i(kr_1-\omega t)},\qquad H_1(t)=\operatorname{Re}\,h_1(t).
 \]
-\textbf{The wave from both holes is described by the sum of the two arrows} placed tip to tail, and its intensity is the squared length of the sum:
+The direction of this arrow is the phase $kr_1-\omega t$: the part $kr_1$ is set by the distance from the hole (one more wavelength turns it by $2\pi$) and the part $-\omega t$ turns the arrow in time. Hole~2 gives $h_2(t)=A_2e^{i(kr_2-\omega t)}$ and $H_2(t)=\operatorname{Re}\,h_2(t)$.
+
+\paragraph{Step 2: add the complex waves.}
 \[
-I_{12}=|h_1+h_2|^2=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta,\qquad \delta=k(r_2-r_1).
+h_{12}(t)=h_1(t)+h_2(t).
 \]
-The last term is the interference term, and $\delta$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For two waves of equal size, $I_{12}$ is largest, four times the intensity of one wave, where $\delta$ is a multiple of $2\pi$ (the distances differ by whole wavelengths), and zero where $\delta$ is an odd multiple of $\pi$ (the distances differ by an odd number of half-wavelengths). The result is not $I_1+I_2$: the waves \emph{interfere}. For waves of unequal size, or any number of waves, the arrows are simply placed tip to tail, with no extra work.\footnote{The same result in trigonometric form, for two waves of equal size $A$. The heights are $H_1=A\cos(kr_1-\omega t)$ and $H_2=A\cos(kr_2-\omega t)$, and the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives $H_{12}(t)=2A\cos\frac{\delta}{2}\cos\!\big(\frac{k(r_1+r_2)}{2}-\omega t\big)$. This is a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. The arrows give the same: with $|h_1|=|h_2|=A$, $I_{12}=2A^2+2A^2\cos\delta=4A^2\cos^2(\delta/2)$. For unequal sizes, or for three or more waves, the identity no longer applies directly and the algebra grows quickly, whereas arrows keep adding.}
+
+\paragraph{Step 3: the real part is the real height.} The real part of a sum is the sum of the real parts, so
+\[
+\operatorname{Re}\,h_{12}(t)=\operatorname{Re}\,h_1(t)+\operatorname{Re}\,h_2(t)=H_1(t)+H_2(t)=H_{12}(t).
+\]
+This is the height of the water with both holes open, since the heights add. Adding the arrows and then taking the real part gives the same wave as adding the real waves.
+
+\paragraph{Step 4: separate the part that turns.} Both arrows contain the factor $e^{-i\omega t}$, so
+\[
+h_{12}(t)=\big(A_1e^{ikr_1}+A_2e^{ikr_2}\big)\,e^{-i\omega t}.
+\]
+The bracket is the sum of the two arrows at $t=0$ (top left of the figure below), placed tip to tail. The factor $e^{-i\omega t}$ turns the whole sum, and the two arrows keep the same angle $\delta=k(r_2-r_1)$ between them, so the \emph{length} of the sum does not change in time.
+
+\paragraph{Step 5: the intensity is the squared length.} For a wave $H=\operatorname{Re}[c\,e^{-i\omega t}]$ the average of $H^2$ over a period is $\tfrac12|c|^2$. The constant $\tfrac12$ is the same for every wave and is dropped, so the intensity is $I=|h|^2$. Since $|e^{-i\omega t}|=1$, the intensity of one hole is $I_1=|h_1|^2=A_1^2$, and with both holes open
+\[
+I_{12}=|h_{12}|^2=\big|A_1e^{ikr_1}+A_2e^{ikr_2}\big|^2=A_1^2+A_2^2+2A_1A_2\cos\delta .
+\]
+The last step uses $|u+v|^2=|u|^2+|v|^2+2\operatorname{Re}(u^*v)$ with $u^*v=A_1A_2e^{i\delta}$. In terms of the single-hole intensities,
+\[
+I_{12}=I_1+I_2+2\sqrt{I_1I_2}\,\cos\delta .
+\]
+The last term is the interference term, and $\delta$ is the angle between the two arrows: parallel arrows add their lengths, opposite arrows subtract them. For two waves of equal size, $I_{12}$ is largest, four times the intensity of one wave, where $\delta$ is a multiple of $2\pi$ (the distances differ by whole wavelengths), and zero where $\delta$ is an odd multiple of $\pi$ (the distances differ by an odd number of half-wavelengths). The result is not $I_1+I_2$: the waves \emph{interfere}. For waves of unequal size, or any number of waves, the arrows are simply placed tip to tail, with no extra work.\footnote{The same result in trigonometric form, for two waves of equal size $A$. The heights are $H_1=A\cos(kr_1-\omega t)$ and $H_2=A\cos(kr_2-\omega t)$, and the identity $\cos a+\cos b=2\cos\frac{a-b}{2}\cos\frac{a+b}{2}$ gives $H_{12}(t)=2A\cos\frac{\delta}{2}\cos\!\big(\frac{k(r_1+r_2)}{2}-\omega t\big)$. This is a wave of the same frequency whose size is $2A|\cos(\delta/2)|$, so $I_{12}=4A^2\cos^2(\delta/2)$. The arrows give the same: with $A_1=A_2=A$, $I_{12}=2A^2+2A^2\cos\delta=4A^2\cos^2(\delta/2)$. For unequal sizes, or for three or more waves, the identity no longer applies directly and the algebra grows quickly, whereas arrows keep adding.}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/two-hole-interference.png}
-\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top left: $h_1$ (red), $h_2$ (blue) tip to tail, and their sum (black), at the detector position marked in the bottom panel. Top right: heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$, the intensity if the waves did not interfere.}
+\caption{Two holes $d=4$ apart, $\lambda=1$, detector line 20 units behind the wall. Top left: the arrows $h_1$ (red) and $h_2$ (blue) tip to tail, and their sum (black), at $t=0$ and at the detector position marked in the bottom panel. Top right: the real heights over two periods. Bottom: intensity along the detector line; dashed is $I_1+I_2$, the intensity if the waves did not interfere.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
