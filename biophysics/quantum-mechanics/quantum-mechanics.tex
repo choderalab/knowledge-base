@@ -121,7 +121,7 @@ The argument $kx-\omega t$ is again the \textbf{phase}, now depending on both po
 \[
 v_{\text{phase}}=\frac{\omega}{k}=\frac{\lambda}{T}.
 \]
-This form follows from the motion of a source. If a source at $x=0$ moves as $A\cos(\omega t)$ and the disturbance travels outward at speed $v$, the motion at distance $r$ is that of the source a time $r/v$ earlier, $A\cos(\omega t-kr)$ with $k=\omega/v$, which equals $A\cos(kr-\omega t)$. \textbf{The distance from the source enters only through the phase $kr$}, which increases by $2\pi$ for each further wavelength. The speed of the pattern is not the speed of a particle (section~\ref{sec:packets}).
+This form follows from the motion of a source. If a source at $x=0$ moves as $A\cos(\omega t)$ and the disturbance travels outward at speed $v$, the motion at distance $r$ is that of the source a time $r/v$ earlier, $A\cos(\omega t-kr)$ with $k=\omega/v$, which equals $A\cos(kr-\omega t)$. \textbf{The distance from the source enters only through the phase $kr$}, which increases by $2\pi$ for each further wavelength. Here $r$ is the distance from the source, which plays the role of the position $x$ along the direction in which the wave travels: for a wave moving along a line, $r=x$ and this is $A\cos(kx-\omega t)$. In section~\ref{sec:interference}, $r_1$ and $r_2$ are the distances from two sources (two holes) to a detector, and $x$ is the position of the detector along a line behind the wall. The speed of the pattern is not the speed of a particle (section~\ref{sec:packets}).
 
 \begin{figure}[H]
 \centering
@@ -185,7 +185,7 @@ Together, the arrow at each position turns in time at rate $\omega$ while neighb
 \section{Adding waves: interference}
 \label{sec:interference}
 
-Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2.
+Waves add when the same medium is disturbed by two sources. Consider water waves in a shallow trough passing through two small holes in a wall. Each hole is a source of circular waves of wavelength $\lambda=2\pi/k$ and angular frequency $\omega$. A detector on the far side measures the intensity of the wave motion, proportional to the average of the square of the height. It sits at distance $r_1$ from hole~1 and $r_2$ from hole~2. (These are distances from each hole to the detector, as in section~\ref{sec:waves}, not the position $x$ of the detector along the line behind the wall, which appears in the figure.)
 
 The calculation goes in steps, from the complex waves to the real height.
 
@@ -431,11 +431,11 @@ Three separate statements are involved, and only the first can be addressed with
 
 \subsection{A model with two amplitudes}
 
-The smallest model has two amplitudes of unit size, with relative phase $\phi$ and common phase $\theta$:
+The smallest model has two amplitudes of unit size, with relative phase $\phi$ and common phase $\gamma$:
 \[
-a_1=e^{i(\theta-\phi/2)},\qquad a_2=e^{i(\theta+\phi/2)}.
+a_1=e^{i(\gamma-\phi/2)},\qquad a_2=e^{i(\gamma+\phi/2)}.
 \]
-Combining the two as in section~\ref{sec:amplitudes}, $P=\cos^2(\phi/2)$, independent of $\theta$. Two descriptions $(\theta,\phi)$ give the same pair $(a_1,a_2)$ also when related by $(\theta,\phi)\to(\theta+\pi,\phi+2\pi)$: advancing $\phi$ by $2\pi$ flips the sign of the pair, as does advancing $\theta$ by $\pi$.
+Combining the two as in section~\ref{sec:amplitudes}, $P=\cos^2(\phi/2)$, independent of $\gamma$. Two descriptions $(\gamma,\phi)$ give the same pair $(a_1,a_2)$ also when related by $(\gamma,\phi)\to(\gamma+\pi,\phi+2\pi)$: advancing $\phi$ by $2\pi$ flips the sign of the pair, as does advancing $\gamma$ by $\pi$.
 
 \paragraph{The value of $m$.} The observable quantity is the relative phase $\phi$: the direction of the arrow $a_1^*a_2=e^{i\phi}$ (for the electron, the direction of the spin in the $xy$-plane). A rotation of space through $\alpha$ must advance it by exactly $\alpha$. If the rotation multiplies the two amplitudes by $e^{\mp im\alpha}$, then $\phi$ advances by $2m\alpha$, so $2m=1$ and
 \[
