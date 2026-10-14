@@ -192,8 +192,8 @@
 \addtolength{\jot}{0.5em} %Add row spacing to align environment
 %\RequirePackage[verbose,a4paper,top=1.45in,bottom=1.35in,left=1.15in,right=2in,asymmetric,twoside]{geometry}
 
-% JDC Use less paper
-\RequirePackage[verbose,letterpaper,top=0.8in,bottom=0.8in,left=0.5in,right=2.0in,twoside,asymmetric]{geometry}
+% JDC Use less paper (1in side margins; the old 2in right margin was for margin notes)
+\RequirePackage[verbose,letterpaper,top=0.8in,bottom=0.8in,left=1in,right=1in,marginparwidth=0.75in,marginparsep=0.1in,twoside,asymmetric]{geometry}
 
 % JDC: Euler for math | Palatino for rm | Helvetica for ss | Courier for tt
 \renewcommand{\rmdefault}{ppl} % rm
