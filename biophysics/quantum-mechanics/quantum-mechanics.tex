@@ -65,12 +65,13 @@ These notes are not a survey of methods. They collect a small set of ideas that 
 \begin{itemize}
     \item \textbf{Amplitudes}: the state of a system is a list of complex numbers; probabilities are their squared sizes; phases matter only when amplitudes are combined.
     \item \textbf{Waves}: waves add by arrows, and a state of definite energy and momentum is a plane wave $e^{i(kx-\omega t)}$, and $E=\hbar\omega$, $p=\hbar k$ say that energy and momentum are its rotation rates in time and in space.
+    \item \textbf{Whole numbers}: a free wave allows every energy; quantization comes from a condition the wave must satisfy (one value around a ring, zero at the walls of a box, decay for an oscillator), and hydrogen has three such conditions.
     \item \textbf{Symmetry and conservation}: if the physics is unchanged by a shift or a rotation, the corresponding phase rate is conserved. This is Noether's theorem in quantum form.
     \item \textbf{Spin}: what rotation symmetry says about angular momentum, why the electron has two spin states, and why a rotation through $2\pi$ changes the sign of its state.
     \item \textbf{Fermions and bosons}: which of these facts are consequences of rotation symmetry and which need more (the spin-statistics theorem).
 \end{itemize}
 
-Most of this material was worked out in two interactive notebooks (\texttt{spinor\_rotation.py} and \texttt{plane\_waves\_and\_packets.py}, built with marimo) and is summarized here with the key equations. Units are those of the text unless stated; $\hbar=h/2\pi$ is Planck's constant divided by $2\pi$.
+Most of this material was worked out in three notebooks (\texttt{spinor\_\allowbreak rotation.py}, \texttt{plane\_\allowbreak waves\_\allowbreak and\_\allowbreak packets.py} and \texttt{why\_\allowbreak whole\_\allowbreak numbers.py}, all built with marimo) and is summarized here with the key equations. Units are those of the text unless stated; $\hbar=h/2\pi$ is Planck's constant divided by $2\pi$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% WAVES (TRIGONOMETRIC)
@@ -417,6 +418,106 @@ Dust grain, 1~mg at 1~mm/s & 1~$\mu$m & about $10^{19}$ & about $6\times10^{8}$ 
 \end{center}
 
 \paragraph{Numerical note.} A sum over $N$ evenly spaced values of $\qc{qmK}{k}$ repeats with period $2\pi/\Delta \qc{qmK}{k}$, so a finite sum shows copies of the lump. With Gaussian weights, about 10 components give a clean lump at $t=0$, and roughly $5\sqrt{1+(t/t_s)^2}$ are needed as it spreads; equal weights leave a sidelobe of about 5\% for any $N$. The lump width is set by the bandwidth, never by $N$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% WHOLE NUMBERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Where whole numbers come from}
+\label{sec:quantization}
+
+Nothing in the plane wave $e^{i(\qc{qmK}{k}x-\qc{qmOmega}{\omega} t)}$ requires $\qc{qmK}{k}$ or $\qc{qmOmega}{\omega}$ to be a whole number, and replacing them by $p/\hbar$ and $E/\hbar$ does not change this: $\hbar$ only converts between the language of waves and that of particles. Yet an electron in an atom has only particular energies. The whole numbers do not belong to the wave. They belong to a \emph{condition that the wave must satisfy} where its region ends or closes on itself.
+
+\subsection{A free wave allows every value}
+
+For a particle with no force on it, a state of definite energy is the plane wave of section~\ref{sec:planewaves}, with $E=\hbar^2\qc{qmK}{k}^2/2m$ for \emph{every} $\qc{qmK}{k}$. The energy is a continuum. A starting phase $\qc{qmPhase}{\theta}_0$ is also free: multiplying the wave by $e^{i\qc{qmPhase}{\theta}_0}$ gives another solution with the same $|\psi|^2$, and no observable changes (section~\ref{sec:amplitudes}). This is the sense in which the phase can be anything. A real free electron is a packet (section~\ref{sec:packets}), a spread of $\qc{qmK}{k}$, and the allowed values still form a continuum.
+
+\subsection{A ring: the ends must agree}
+
+Let the particle move only around a circle of radius $R$, with position given by the angle $\varphi$ (so $\varphi=2\pi$ is the same place as $\varphi=0$). A wave of definite energy is $e^{i\qc{qmK}{q}\varphi}$ with $\qc{qmK}{q}=\qc{qmK}{k}R$, which is the number of wavelengths around the circumference, $2\pi R/\qc{qmPeriod}{\lambda}$. Once around the ring the arrow turns through $2\pi \qc{qmK}{q}$. The wave function has one value at each place, so at the seam
+\[
+e^{i\,2\pi \qc{qmK}{q}}=1\quad\Longleftrightarrow\quad \qc{qmK}{q}=0,\pm1,\pm2,\dots
+\]
+If $\qc{qmK}{q}$ were not whole there would be a jump at the seam, of size $|e^{i2\pi \qc{qmK}{q}}-1|=2|\sin\pi \qc{qmK}{q}|$, with an infinite second derivative, and the Schr\"odinger equation could not hold there (figure~\ref{fig:ring}). The momentum along the ring is $\hbar\qc{qmK}{q}/R$, so the angular momentum is
+\[
+L=R\,p=\qc{qmK}{q}\,\hbar,\qquad E=\frac{\hbar^2\qc{qmK}{q}^2}{2mR^2}.
+\]
+Angular momentum comes in whole multiples of $\hbar$, and the energy is the whole number squared, not itself a whole number. Negative $\qc{qmK}{q}$ goes the other way round with the same energy. The whole number is the number of times the arrow turns around the ring; one whole number cannot change smoothly into another, so the allowed values are separated.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/ring-seam.png}
+\caption{A wave on a ring with $\qc{qmK}{q}=2.5$ wavelengths around. Left: the real part drawn on the ring. Middle: the ring unrolled; the two ends (circle and square) are the same point but do not agree, so this wave is not allowed. Right: the energy of waves that do not fit (grey) and of the allowed ones (dots).}
+\label{fig:ring}
+\end{figure}
+
+\subsection{A box: the wave is zero at the walls}
+
+Let the particle move between walls at $x=0$ and $x=L$ that it cannot enter. The wave function is zero outside and has no jump, so $\psi(0)=\psi(L)=0$. Inside, a state of definite energy is $a\,e^{i\qc{qmK}{k}x}+b\,e^{-i\qc{qmK}{k}x}$. The condition at $x=0$ gives $b=-a$, a standing wave $\psi\propto\sin\qc{qmK}{k}x$, and the condition at $x=L$ requires $\sin\qc{qmK}{k}L=0$:
+\[
+\qc{qmK}{k}L=n\pi,\qquad E_n=\frac{n^2\pi^2\hbar^2}{2mL^2},\qquad n=1,2,3,\dots
+\]
+(figure~\ref{fig:box}). The state has $n-1$ nodes, and a whole number of half wavelengths fits between the walls. For an electron in a box of $L=1$~nm, $E_1=0.38$~eV. The spacing between levels falls as $1/L^2$, so for a large box or a heavy particle the levels are too close to tell apart and the energy looks continuous, which is why whole numbers do not show up in everyday objects.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/box-wall.png}
+\caption{The wave $\sin\qc{qmK}{k}x$ in a box (grey: walls) for a trial $\qc{qmK}{k}$ with $\qc{qmK}{k}L/\pi=2.6$. Left: the value at the far wall (red dot) is not zero. Right: that value as $\qc{qmK}{k}L/\pi$ changes; it is zero at whole numbers (orange) and only there.}
+\label{fig:box}
+\end{figure}
+
+\subsection{The same pattern in the oscillator}
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+ & Region & Condition & Allowed \\
+\hline
+Ring & closes on itself & one value at the seam & $q=0,\pm1,\pm2,\dots$ \\
+Box & ends at hard walls & $\psi=0$ at both walls & $kL=n\pi$ \\
+Oscillator & ends smoothly & $\psi\to0$ far away on both sides & $E=(n+\tfrac12)\hbar\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+In each case the wave inside the region is locally an ordinary wave, with a wavelength set by the energy (and by the potential where there is a force). The condition at the edge or seam removes all energies except a discrete set, and the whole number counts the nodes, or turns of the arrow, that fit. For the oscillator, with potential $\tfrac12m\omega^2x^2$ and no hard wall, the condition is that the wave dies away on both sides. Integrating the Schr\"odinger equation from one end for a trial energy gives a solution that grows without limit at the other end, except at the allowed energies. The figure shows the lowest three states of each system on their own energy levels: more energy, shorter wavelength, more nodes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/ring-box-oscillator.png}
+\caption{The lowest three states of a ring, a box and a harmonic oscillator (real parts, blue), each on its own energy level (orange, dashed).}
+\end{figure}
+
+\subsection{Hydrogen: three conditions, three whole numbers}
+
+The electron in hydrogen feels $V(r)\propto-1/r$, which depends only on the distance $r$ from the nucleus. A position is given by $r$, the polar angle $\theta$ (from a chosen axis, $0$ to $\pi$) and the azimuth $\varphi$ ($0$ to $2\pi$). The wave function must satisfy one condition in each coordinate:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Coordinate & Condition & Whole number \\
+\hline
+azimuth $\varphi$ & one value at the seam: the ring above & $m=0,\pm1,\pm2,\dots$, $L_z=m\hbar$ \\
+polar angle $\theta$ & finite on the axis, at $\theta=0$ and $\pi$ & $\ell=0,1,2,\dots$, with $|m|\le\ell$ \\
+distance $r$ & finite at the nucleus, dies away far away & $n=\ell+1,\ell+2,\dots$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The second and third rows are the box and oscillator conditions, one for each remaining coordinate; their derivation is not given here. The result for the energy is
+\[
+E_n=-\frac{13.6\ \text{eV}}{n^2},\qquad n=1,2,3,\dots
+\]
+which depends on $n$ only, so the states with the same $n$ share a level. The number of pairs $(\ell,m)$ for a given $n$ is $\sum_{\ell=0}^{n-1}(2\ell+1)=n^2$ (figure~\ref{fig:hydrogen}); spin doubles this to $2n^2$. The energies are negative because the electron is bound. Above zero the electron is free to leave, no condition at infinity can be imposed, and every energy is allowed: the continuum of the first subsection again.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/hydrogen-levels.png}
+\caption{Hydrogen levels $-13.6\ \text{eV}/n^2$, separated by $\ell$. The number beside each level is the number of values of $m$, $2\ell+1$.}
+\label{fig:hydrogen}
+\end{figure}
+
+\paragraph{What this does and does not explain.} The ring argument requires a wave function with one value at each point, so it gives whole $m$ for motion in space. The half-integer values of spin (section~\ref{sec:spinhalf}) are not of this kind: the electron's spin state is not a function of position on a ring, and a $2\pi$ rotation may change its sign. The whole numbers of this section explain the \emph{levels} of a bound electron. They do not explain why there is exactly one electron, or why all electrons are identical; that concerns the electron as a quantum of a field, a separate idea.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ROTATIONS
